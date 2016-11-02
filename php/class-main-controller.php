@@ -17,6 +17,7 @@ class Main_Controller {
 	private $login_form;
 	private $back_end_access_control;
 	private $front_end_access_control;
+	private $logout;
 
 	/**
 	 * Constructor
@@ -30,7 +31,8 @@ class Main_Controller {
 		Admin_Notices $admin_notices,
 		Login_Form $login_form,
 		Back_End_Access_control $back_end_access_control,
-		Front_End_Access_control $front_end_access_control
+		Front_End_Access_control $front_end_access_control,
+		Logout $logout
 	) {
 		$this->plugin_options           = $plugin_options;
         $this->assets_controller        = $assets_controller;
@@ -38,6 +40,7 @@ class Main_Controller {
 		$this->login_form               = $login_form;
 		$this->back_end_access_control  = $back_end_access_control;
 		$this->front_end_access_control = $front_end_access_control;
+		$this->logout                   = $logout;
 	}
 
 	/**
@@ -51,5 +54,6 @@ class Main_Controller {
 		$this->login_form->run();
 		$this->back_end_access_control->run();
 		$this->front_end_access_control->run();
+		$this->logout->run();
 	}
 }

@@ -56,6 +56,7 @@ class Plugin_Options {
 		register_setting( $settings . '_group', $prefix . 'form_location_login' );
 		register_setting( $settings . '_group', $prefix . 'form_location_register' );
 		register_setting( $settings . '_group', $prefix . 'form_location_reset' );
+		register_setting( $settings . '_group', $prefix . 'form_location_forgot' );
 		register_setting( $settings . '_group', $prefix . 'form_location_home' );
 		register_setting( $settings . '_group', $prefix . 'enqueue_front_end_assets' );
 		register_setting( $settings . '_group', $prefix . 'enqueue_back_end_assets' );
@@ -72,6 +73,7 @@ class Plugin_Options {
 		add_settings_field( $prefix . 'field_form_location_home', __( 'Home Page:', MKDO_FEL_TEXT_DOMAIN ), array( $this, 'render_field_form_location_home' ), $settings, $section );
 		add_settings_field( $prefix . 'field_form_location_login', __( 'Login Page:', MKDO_FEL_TEXT_DOMAIN ), array( $this, 'render_field_form_location_login' ), $settings, $section );
 		add_settings_field( $prefix . 'field_form_location_register', __( 'Register Page:', MKDO_FEL_TEXT_DOMAIN ), array( $this, 'render_field_form_location_register' ), $settings, $section );
+		add_settings_field( $prefix . 'field_form_location_forgot', __( 'Forgot Password Page:', MKDO_FEL_TEXT_DOMAIN ), array( $this, 'render_field_form_location_forgot' ), $settings, $section );
 		add_settings_field( $prefix . 'field_form_location_reset', __( 'Reset Password Page:', MKDO_FEL_TEXT_DOMAIN ), array( $this, 'render_field_form_location_reset' ), $settings, $section );
 
 		// Add section and fields for Back End Access Control
@@ -104,6 +106,11 @@ class Plugin_Options {
 		echo '</p>';
 	}
 
+	// Render the Home Page Location Selector
+	public function render_field_form_location_home() {
+		$this->render_field_form_location( 'home', 'Home Page', 'form_location_home' );
+	}
+
 	// Render the Login Page Location Selector
 	public function render_field_form_location_login() {
 		$this->render_field_form_location( 'login', 'Login Page', 'form_location_login' );
@@ -115,13 +122,13 @@ class Plugin_Options {
 	}
 
 	// Render the Password Reset Page Location Selector
-	public function render_field_form_location_reset() {
-		$this->render_field_form_location( 'reset', 'Reset Password Page', 'form_location_reset' );
+	public function render_field_form_location_forgot() {
+		$this->render_field_form_location( 'forgot', 'Forgot Password Page', 'form_location_forgot' );
 	}
 
-	// Render the Home Page Location Selector
-	public function render_field_form_location_home() {
-		$this->render_field_form_location( 'home', 'Home Page', 'form_location_home' );
+	// Render the Password Reset Page Location Selector
+	public function render_field_form_location_reset() {
+		$this->render_field_form_location( 'reset', 'Reset Password Page', 'form_location_reset' );
 	}
 
 	// Render the Enqueue Front End Assets field
@@ -321,6 +328,7 @@ class Plugin_Options {
 		$defaults      = array();
 		$page_login    = Helper::get_page_location( $prefix . 'form_location_login', 'login' );
 		$page_register = Helper::get_page_location( $prefix . 'form_location_register', 'register' );
+		$page_forgot   = Helper::get_page_location( $prefix . 'form_location_forgot', 'forgot' );
 		$page_reset    = Helper::get_page_location( $prefix . 'form_location_reset', 'reset' );
 
 		if ( ! in_array( $page_login->ID, $defaults ) ) {
@@ -332,6 +340,10 @@ class Plugin_Options {
 		}
 
 		if ( ! in_array( $page_reset->ID, $defaults ) ) {
+			$defaults[] = $page_reset->ID;
+		}
+
+		if ( ! in_array( $page_forgot->ID, $defaults ) ) {
 			$defaults[] = $page_reset->ID;
 		}
 

@@ -68,6 +68,7 @@ class Front_End_Access_Control {
 		$defaults       = array();
 		$page_login     = Helper::get_page_location( $prefix . 'form_location_login', 'login' );
 		$page_register  = Helper::get_page_location( $prefix . 'form_location_register', 'register' );
+		$page_forgot    = Helper::get_page_location( $prefix . 'form_location_forgot', 'forgot' );
 		$page_reset     = Helper::get_page_location( $prefix . 'form_location_reset', 'reset' );
 		$page_login_url = get_the_permalink( $page_login->ID );
 
@@ -80,6 +81,10 @@ class Front_End_Access_Control {
 		}
 
 		if ( ! in_array( $page_reset->ID, $defaults ) ) {
+			$defaults[] = $page_reset->ID;
+		}
+
+		if ( ! in_array( $page_forgot->ID, $defaults ) ) {
 			$defaults[] = $page_reset->ID;
 		}
 

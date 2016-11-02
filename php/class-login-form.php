@@ -30,6 +30,13 @@ class Login_Form {
 	 * Form Submission
 	 */
 	public function render_form() {
+		$username = null;
+		$password = null;
+
+		if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) && isset( $_POST['login_nonce'] ) ) {
+			$username = sanitize_email( $_POST['username'] );
+			$password = $_POST['password'];
+		}
 		require Helper::get_template_path( 'login-form' );
 	}
 
