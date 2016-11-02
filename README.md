@@ -6,11 +6,6 @@ Front End Login, Password Reset and Register User
 
 Front End Login, Password Reset and Register User
 
-Features:
-
-* Easy to integrate with [Gravity Forms](http://www.gravityforms.com/), just activate and drag the field onto your form
-* Option to enable you to enqueue CSS or JS, or lets you add your own
-
 ## Installation
 
 1. Download this repository and unzip it into the folder `front-end-login`
