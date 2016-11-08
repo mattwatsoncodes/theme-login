@@ -18,6 +18,7 @@ class Main_Controller {
 	private $back_end_access_control;
 	private $front_end_access_control;
 	private $logout;
+	private $password_reset_form;
 
 	/**
 	 * Constructor
@@ -32,7 +33,8 @@ class Main_Controller {
 		Login_Form $login_form,
 		Back_End_Access_control $back_end_access_control,
 		Front_End_Access_control $front_end_access_control,
-		Logout $logout
+		Logout $logout,
+		Password_Reset_Form $password_reset_form
 	) {
 		$this->plugin_options           = $plugin_options;
         $this->assets_controller        = $assets_controller;
@@ -41,6 +43,7 @@ class Main_Controller {
 		$this->back_end_access_control  = $back_end_access_control;
 		$this->front_end_access_control = $front_end_access_control;
 		$this->logout                   = $logout;
+		$this->password_reset_form      = $password_reset_form;
 	}
 
 	/**
@@ -55,5 +58,6 @@ class Main_Controller {
 		$this->back_end_access_control->run();
 		$this->front_end_access_control->run();
 		$this->logout->run();
+		$this->password_reset_form->run();
 	}
 }

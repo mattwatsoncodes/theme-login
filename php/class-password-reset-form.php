@@ -22,10 +22,11 @@ class Password_Reset_Form {
 	 * Do Work
 	 */
 	public function run() {
-		add_action( 'init', array( $this, 'password_reset_submit' ) );
+		add_action( 'init', array( $this, 'reset_password_submit' ) );
 		add_action( 'init', array( $this, 'forgot_password_submit' ) );
 		add_action( 'front_end_login_render_password_reset_form', array( $this, 'render_password_reset_form' ) );
 		add_action( 'front_end_login_render_forgot_password_form', array( $this, 'render_forgot_password_form' ) );
+		add_action( 'init', array( $this, 'render_redirect_notices' ) );
 	}
 
 	public function render_password_reset_form() {
@@ -45,7 +46,7 @@ class Password_Reset_Form {
 	}
 
 	public function render_forgot_password_form() {
-		$password = null;
+		$username = null;
 		if ( isset( $_POST['username'] ) && isset( $_POST['reset_nonce'] ) ) {
 			$username = $_POST['username'];
 		}
@@ -76,7 +77,7 @@ class Password_Reset_Form {
 		if ( isset( $_POST['password'] ) && isset( $_POST['set_password_nonce'] ) ) {
 
 			if ( ! wp_verify_nonce( $_POST['set_password_nonce'], 'set_password' ) ) {
-				wp_redirect( $page_forgot_url . '?expired_key=true' ), 302 );
+				wp_redirect( $page_forgot_url . '?expired_key=true' , 302 );
 				exit;
 			}
 
@@ -85,42 +86,41 @@ class Password_Reset_Form {
 				! preg_match( '#[0-9]+#', $_POST['password'] ) ||
 		        ! preg_match( '#[a-zA-Z]+#', $_POST['password'] )
 			) {
-				wp_redirect( $page_reset_url . '?weak_password=true' ), 302 );
-				exit;
-		    }
+				add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_weak_password' ) );
+		    } else {
 
-			if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
-				list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
-				$user = check_password_reset_key( $rp_key, $rp_login );
-				if ( isset( $_POST['password'] ) && ! hash_equals( $rp_key, $_POST['rp_key'] ) ) {
+				if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
+					list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
+					$user = check_password_reset_key( $rp_key, $rp_login );
+					if ( isset( $_POST['password'] ) && ! hash_equals( $rp_key, $_POST['rp_key'] ) ) {
+						$user = false;
+					}
+				} else {
 					$user = false;
 				}
-			} else {
-				$user = false;
-			}
 
-			if ( ! $user || is_wp_error( $user ) ) {
-				setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
-				if ( $user && $user->get_error_code() === 'expired_key' ) {
-					wp_redirect( $page_forgot_url . '?expired_key=true' ), 302 );
-				} else {
-					wp_redirect( $page_forgot_url . '?invalid_key=true' ), 302 );
+				if ( ! $user || is_wp_error( $user ) ) {
+					setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+					if ( $user && $user->get_error_code() === 'expired_key' ) {
+						wp_redirect( $page_forgot_url . '?expired_key=true' , 302 );
+					} else {
+						wp_redirect( $page_forgot_url . '?invalid_key=true' , 302 );
+					}
+					exit;
 				}
-				exit;
-			}
 
-			$errors = new WP_Error();
+				$errors = new \WP_Error();
 
-			if ( isset( $_POST['password'] ) && $_POST['password'] != $_POST['confirm_password'] ) {
-				wp_redirect( site_url( $page_reset_url . '?password_match=false' ), 302 );
-				exit;
-			}
-
-			if ( ( ! $errors->get_error_code() ) && isset( $_POST['password'] ) && ! empty( $_POST['password'] ) ) {
-				reset_password( $user, $_POST['password'] );
-				setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
-				wp_safe_redirect( $page_login_url . '?password_reset=true' ), 302 );
-				exit;
+				if ( isset( $_POST['password'] ) && $_POST['password'] != $_POST['confirm_password'] ) {
+					add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_passwords_do_not_match' ) );
+				} else {
+					if ( ( ! $errors->get_error_code() ) && isset( $_POST['password'] ) && ! empty( $_POST['password'] ) ) {
+						reset_password( $user, $_POST['password'] );
+						setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+						wp_safe_redirect( $page_login_url . '?password_reset=true' , 302 );
+						exit;
+					}
+				}
 			}
 		}
 	}
@@ -129,7 +129,6 @@ class Password_Reset_Form {
 		global $wpdb, $wp_hasher;
 
 		if ( isset( $_POST['username'] ) && isset( $_POST['reset_nonce'] ) ) {
-
 
 			$prefix          = $this->options_prefix;
 			$page_login      = Helper::get_page_location( $prefix . 'form_location_login', 'login' );
@@ -193,7 +192,7 @@ class Password_Reset_Form {
 
 					    if ( empty( $wp_hasher ) ) {
 					        require_once ABSPATH . 'wp-includes/class-phpass.php';
-					        $wp_hasher = new PasswordHash( 8, true );
+					        $wp_hasher = new \PasswordHash( 8, true );
 					    }
 
 					    $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
@@ -212,17 +211,49 @@ class Password_Reset_Form {
 					    if ( $message && ! wp_mail( $user_email, $title, $message ) ) {
 					        wp_die( __( 'The e-mail could not be sent.' ) . "<br />\n" . __( 'Possible reason: your host may have disabled the mail() function...' ) );
 						} else {
-							wp_safe_redirect( esc_url( $page_forgot_url . '?success=true' ) ), $status = 302 );
-							exit;
+							add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_check_email' ) );
 						}
 					}
 				}
 			}
 
 			if ( $invalid_email ) {
-				wp_safe_redirect( esc_url( $page_forgot_url . '?invalid_email=true' ) ), $status = 302 );
-				exit;
+				add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_invalid_email_address' ) );
 			}
 		}
+	}
+
+	public function render_redirect_notices() {
+		if ( isset( $_GET['expired_key'] ) || isset( $_GET['invalid_key'] ) ) {
+			add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_key_issue' ) );
+		}
+
+		if ( isset( $_GET['password_reset'] ) ) {
+			add_action( 'front_end_login_render_notices', array( $this, 'render_reset_notice_success' ) );
+		}
+	}
+
+	public function render_reset_notice_key_issue() {
+		require Helper::get_template_path( 'reset-notice-key-issue' );
+	}
+
+	public function render_reset_notice_success() {
+		require Helper::get_template_path( 'reset-notice-success' );
+	}
+
+	public function render_reset_notice_weak_password() {
+		require Helper::get_template_path( 'reset-notice-weak-password' );
+	}
+
+	public function render_reset_notice_passwords_do_not_match() {
+		require Helper::get_template_path( 'reset-notice-passwords-do-not-match' );
+	}
+
+	public function render_reset_notice_check_email() {
+		require Helper::get_template_path( 'reset-notice-check-email' );
+	}
+
+	public function render_reset_notice_invalid_email_address() {
+		require Helper::get_template_path( 'reset-notice-invalid-email-address' );
 	}
 }

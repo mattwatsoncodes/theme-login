@@ -30,6 +30,7 @@ require_once 'php/class-login-form.php';
 require_once 'php/class-back-end-access-control.php';
 require_once 'php/class-front-end-access-control.php';
 require_once 'php/class-logout.php';
+require_once 'php/class-password-reset-form.php';
 require_once 'php/class-main-controller.php';
 
 // Use Namespaces
@@ -41,6 +42,7 @@ use mkdo\front_end_login\Login_form;
 use mkdo\front_end_login\Back_End_Access_Control;
 use mkdo\front_end_login\Front_End_Access_Control;
 use mkdo\front_end_login\Logout;
+use mkdo\front_end_login\Password_Reset_Form;
 use mkdo\front_end_login\Main_Controller;
 
 // Initialize Classes
@@ -52,6 +54,7 @@ $login_form               = new Login_Form( $plugin_options );
 $back_end_access_control  = new Back_End_Access_Control( $plugin_options );
 $front_end_access_control = new Front_End_Access_Control( $plugin_options );
 $logout                   = new Logout( $plugin_options );
+$password_reset_form      = new Password_Reset_Form( $plugin_options );
 $main_controller          = new Main_Controller(
 	$plugin_options,
 	$assets_controller,
@@ -59,7 +62,8 @@ $main_controller          = new Main_Controller(
 	$login_form,
 	$back_end_access_control,
 	$front_end_access_control,
-	$logout
+	$logout,
+	$password_reset_form
 );
 
 // Run the Plugin
