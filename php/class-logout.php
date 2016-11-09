@@ -40,7 +40,7 @@ class Logout {
 			restore_current_blog();
 		}
 
-		return $page_login_url . '?login=true';
+		return $page_login_url . '?logout=true';
 	}
 
 	public function do_logout() {
