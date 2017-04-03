@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Form_Login
+ * Class Form_Register
  *
  * @since	0.1.0
  *
@@ -10,9 +10,9 @@
 namespace mkdo\front_end_login;
 
 /**
- * The login form.
+ * The registration form.
  */
-class Form_Login {
+class Form_Register {
 
 	/**
 	 * Constructor
@@ -24,7 +24,7 @@ class Form_Login {
 	 */
 	public function run() {
 		add_action( 'init', array( $this, 'submit' ) );
-		add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_login_form', array( $this, 'render_form' ) );
+		add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_register_form', array( $this, 'render_form' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 	}
 
@@ -35,7 +35,7 @@ class Form_Login {
 
 		if (
 			isset( $_POST['username'] ) &&
-			isset( $_POST['form_login_nonce'] )
+			isset( $_POST['form_register_nonce'] )
 		) {
 
 			$incorrect_password = false;
@@ -45,13 +45,8 @@ class Form_Login {
 			$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
 
 			// Check the nonce.
-			if ( ! wp_verify_nonce( $_POST['form_login_nonce'], 'form_login' ) ) {
+			if ( ! wp_verify_nonce( $_POST['form_register_nonce'], 'form_register' ) ) {
 				$invalid_email = true;
-			}
-
-			// Check that the password has been set.
-			if ( ! isset( $_POST['password'] ) ) {
-				$incorrect_password = true;
 			}
 
 			// Check that the username is an email address.
@@ -61,11 +56,10 @@ class Form_Login {
 
 			// We may wish to extend the form, so lets put in filters so we can
 			// extra checks.
-			$invalid_email      = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_invalid_email', $invalid_email );
-			$incorrect_password = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_incorrect_password', $incorrect_password );
+			$invalid_email      = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_email', $invalid_email );
 
 			// If the usernames and passwords pass the tests, try to login.
-			if ( ! $incorrect_password && ! $invalid_email ) {
+			if ( ! $invalid_email ) {
 
 				// Depending on if the username is an email or not, we need to
 				// sanitize it appropriately.
@@ -102,7 +96,7 @@ class Form_Login {
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
-					$redirect_url = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_redirect_url', $redirect_url );
+					$redirect_url = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_redirect_url', $redirect_url );
 
 					// Persist the query strings.
 					$qs = isset( $_SERVER['QUERY_STRING'] ) && ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : null;
@@ -114,7 +108,7 @@ class Form_Login {
 			}
 			// If we had errors.
 			if ( $incorrect_password || $invalid_email ) {
-				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices', array( $this, 'render_notice' ) );
+				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notices', array( $this, 'render_notice' ) );
 			}
 		}
 	}
@@ -131,21 +125,19 @@ class Form_Login {
 	 */
 	public function render_form() {
 		$username          = null;
-		$password          = null;
+		$email             = null;
 		$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
 
 		if (
-			isset( $_POST['username'] ) &&
-			isset( $_POST['password'] ) &&
-			isset( $_POST['form_login_nonce'] )
+			isset( $_POST['email'] ) &&
+			isset( $_POST['form_register_nonce'] )
 		) {
-			$username = esc_attr( $_POST['username'] );
-			if ( $username_is_email ) {
-				$username = sanitize_email( $_POST['username'] );
+			if ( isset( $_POST['username'] ) ) {
+				$username = esc_attr( $_POST['username'] );
 			}
-			$password = $_POST['password'];
+			$email = sanitize_email( $_POST['email'] );
 		}
-		require Helper::render_view( 'view-form-login' );
+		require Helper::render_view( 'view-form-register' );
 	}
 
 	/**
@@ -154,8 +146,8 @@ class Form_Login {
 	public function register_shortcodes() {
 
 		// add the shortcodes.
-		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login', array( $this, 'render_form_action' ) );
-		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login_invalid_username_or_password', array( $this, 'render_notice_actions' ) );
+		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register', array( $this, 'render_form_action' ) );
+		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_register_invalid_username_or_password', array( $this, 'render_notice_actions' ) );
 	}
 
 	/**
@@ -165,7 +157,7 @@ class Form_Login {
 	 */
 	public function render_form_action() {
 		ob_start();
-		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_login_form' );
+		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_register_form' );
 		return ob_get_clean();
 	}
 
@@ -176,7 +168,7 @@ class Form_Login {
 	 */
 	public function render_notice_actions() {
 		ob_start();
-		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices' );
+		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notices' );
 		return ob_get_clean();
 	}
 }

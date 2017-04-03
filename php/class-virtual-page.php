@@ -102,7 +102,8 @@ class Virtual_Page {
 			'post_content' => apply_filters(
 				MKDO_FRONT_END_LOGIN_PREFIX . '_register_content',
 				''
-			),
+			) .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_register]',
 		);
 
 		$this->post_data['forgot-password'] = array(

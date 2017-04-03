@@ -22,9 +22,9 @@
 
 $username_label = '';
 if ( $username_is_email ) {
-	$username_label = esc_html__( 'Email Address:', 'front-end-login' );
+	$username_label = esc_html__( 'Email Address', 'front-end-login' );
 } else {
-	$username_label = esc_html__( 'Username:', 'front-end-login' );
+	$username_label = esc_html__( 'Username', 'front-end-login' );
 }
 
 /**
@@ -44,7 +44,7 @@ if ( $username_is_email ) {
 
 	<div class="form_login__input form_login__input--username">
 		<label for="username">
-			<?php echo esc_html( $username_label );?>
+			<?php echo esc_html( $username_label ) . ':';?>
 		</label>
 		<input
 			type="<?php echo $username_is_email ? 'email' : 'text';?>"
@@ -52,7 +52,7 @@ if ( $username_is_email ) {
 			name="username"
 			placeholder="<?php echo esc_html( $username_label );?>"
 			value="<?php echo esc_attr( $username );?>"
-		å/>
+		/>
 	</div>
 
 	<?php
@@ -90,13 +90,13 @@ if ( $username_is_email ) {
 	<nav class="form_login__navigation form_navigation" role="navigation">
 		<ul>
 			<li class="form_navigation__item">
-				<a href="<?php echo wp_lostpassword_url(); ?>" title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"><?php esc_html_e( 'Forgot Password?', 'front-end-login' );?></a>
+				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"><?php esc_html_e( 'Forgot Password?', 'front-end-login' );?></a>
 			</li>
 			<?php
 			if ( get_option( 'users_can_register' ) ) {
 				?>
 				<li class="form_navigation__item">
-					<a href="<?php echo wp_registration_url(); ?>" title="<?php esc_html_e( 'Register', 'front-end-login' );?>"><?php esc_html_e( 'Register', 'front-end-login' );?></a>
+					<a href="<?php echo esc_url( wp_registration_url() ); ?>" title="<?php esc_html_e( 'Register', 'front-end-login' );?>"><?php esc_html_e( 'Register', 'front-end-login' );?></a>
 				</li>
 				<?php
 			}
