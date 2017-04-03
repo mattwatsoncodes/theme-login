@@ -80,6 +80,9 @@ class Form_Login {
 					'user_password' => $_POST['password'],
 				);
 
+				// Do actions before login.
+				do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_login', $credentials );
+
 				// Do the login.
 				$user = wp_signon( $credentials );
 
@@ -106,6 +109,9 @@ class Form_Login {
 
 					// Persist the query strings.
 					$qs = isset( $_SERVER['QUERY_STRING'] ) && ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : null;
+
+					// Do actions before redirect.
+					do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_redirect', $redirect_url );
 
 					// Redirect to the home page.
 					wp_safe_redirect( $redirect_url . $qs, 302 );

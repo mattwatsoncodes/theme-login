@@ -38,8 +38,8 @@ class Form_Register {
 			isset( $_POST['form_register_nonce'] )
 		) {
 
-			$incorrect_password = false;
-			$invalid_email      = false;
+			$invalid_username = false;
+			$invalid_email    = false;
 
 			// We may wish to lock down the username to be the email address only.
 			$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
@@ -50,65 +50,21 @@ class Form_Register {
 			}
 
 			// Check that the username is an email address.
-			if ( $username_is_email && ! is_email( $_POST['username'] ) ) {
-				$invalid_email = true;
-			}
+			// if ( $username_is_email && ! is_email( $_POST['username'] ) ) {
+			// 	$invalid_email = true;
+			// }
 
 			// We may wish to extend the form, so lets put in filters so we can
 			// extra checks.
-			$invalid_email      = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_email', $invalid_email );
+			$invalid_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_email', $invalid_email );
 
 			// If the usernames and passwords pass the tests, try to login.
 			if ( ! $invalid_email ) {
 
-				// Depending on if the username is an email or not, we need to
-				// sanitize it appropriately.
-				$user_login = esc_attr( $_POST['username'] );
-				if ( $username_is_email ) {
-					$user_login = sanitize_email( $_POST['username'] );
-				}
-
-				// Setup the credentials.
-				$credentials = array(
-					'user_login'    => $user_login,
-					'user_password' => $_POST['password'],
-				);
-
-				// Do the login.
-				$user = wp_signon( $credentials );
-
-				if ( is_wp_error( $user ) ) {
-
-					// If there was an error.
-					if ( isset( $user->errors['incorrect_password'] ) ) {
-						$incorrect_password = true;
-					}
-
-					if ( isset( $user->errors['invalid_email'] ) ) {
-						$invalid_email = true;
-					}
-				} else {
-					// If the login was successful.
-					//
-					// Lets get the home URL details.
-					$page_home    = get_option( 'page_on_front' );
-					$redirect_url = get_the_permalink( $page_home );
-
-					// Add a filter for the redirect URL. We may wish to extend
-					// this later.
-					$redirect_url = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_redirect_url', $redirect_url );
-
-					// Persist the query strings.
-					$qs = isset( $_SERVER['QUERY_STRING'] ) && ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : null;
-
-					// Redirect to the home page.
-					wp_safe_redirect( $redirect_url . $qs, 302 );
-					exit;
-				}
 			}
 			// If we had errors.
-			if ( $incorrect_password || $invalid_email ) {
-				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notices', array( $this, 'render_notice' ) );
+			if ( $invalid_email ) {
+				// add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notices', array( $this, 'render_notice' ) );
 			}
 		}
 	}
@@ -117,7 +73,7 @@ class Form_Register {
 	 * Render notice
 	 */
 	public function render_notice() {
-		require Helper::render_view( 'view-login-notice-invalid-username-or-password' );
+		// require Helper::render_view( 'view-login-notice-invalid-username-or-password' );
 	}
 
 	/**
