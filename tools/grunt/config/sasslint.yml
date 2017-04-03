@@ -1,0 +1,25 @@
+# We only want the really important issues,
+# so let's ignore some formatting errors.
+linters:
+    Indentation:
+        enabled: false
+    VendorPrefixes:
+        enabled: false
+    Comment:
+        enabled: false
+    SelectorFormat:
+        enabled: false
+    NameFormat:
+        enabled: false
+    SingleLinePerSelector:
+        enabled: false
+    PropertySortOrder:
+        enabled: false
+    FinalNewline:
+        enabled: false
+    StringQuotes:
+        enabled: false
+    EmptyRule:
+        enabled: false
+    ElsePlacement:
+        enabled: false

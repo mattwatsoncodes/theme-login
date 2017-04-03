@@ -1,18 +1,18 @@
-# Front End Login (Beta)
+# Front End Login
 
-Front End Login, Password Reset and Register User
+Front End Login plugin for WordPress.
 
-## About
+## [More Information](#more-information)
+You can find out more about the plugin, including the changelog in the [`readme.txt` file](https://github.com/mwtsn/front-end-login/blob/master/readme.txt), which the
+WordPress repository uses to display information about the plugin.
 
-Front End Login, Password Reset and Register User
+You can also view the plugin on the WordPress repository here: N/A
 
-## Installation
+## [Roadmap](#roadmap)
+A bunch of features will be coming to this framework, including:
 
-1. Download this repository and unzip it into the folder `front-end-login`
-2. Upload the `front-end-login` folder to the `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Configure the plugin via the 'Front End Login' options page under the WordPress 'Settings' Menu
+- Writing this section of the README.md
 
-## Changelog
+## [Credit](#credit)
 
-**1.0.0** - *21.10.2016* - First stable release.  
+Built using the [Front End Login](https://github.com/mwtsn/front-end-login) plugin framework. A framework based on root composition principles, built by [Matt Watson](https://github.com/mwtsn/) and [Dave Green](https://github.com/davetgreen/), with thanks to [Make Do](https://www.makedo.net/).

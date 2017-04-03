@@ -1,0 +1,9 @@
+
+[4m../assets/js/plugin-admin.js[24m
+  [90mline 1[39m  [90mcol 13[39m  [34m'$' is defined but never used.[39m
+
+[4m../assets/js/plugin.js[24m
+  [90mline 1[39m  [90mcol 13[39m  [34m'$' is defined but never used.[39m
+
+  [33m⚠[39m  2 warnings
+

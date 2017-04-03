@@ -1,70 +1,74 @@
 <?php
-
 /**
+ * Front End Login
+ *
  * @link              https://github.com/mkdo/front-end-login
- * @package           mkdo\front_end_login
+ * @package           mkdo\front-end-login
  *
  * Plugin Name:       Front End Login
  * Plugin URI:        https://github.com/mkdo/front-end-login
- * Description:       Front End Login, Password Reset and Register User
- * Version:           1.0.0
+ * Description:       A brief description of the plugin.
+ * Version:           0.1.0
  * Author:            Make Do <hello@makedo.net>
- * Author URI:        http://www.makedo.in
+ * Author URI:        https://makedo.net
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       front-end-login
  * Domain Path:       /languages
  */
 
-// Constants
-define( 'MKDO_FEL_ROOT', __FILE__ );
-define( 'MKDO_FEL_VERSION', '1.0.0' );
-define( 'MKDO_FEL_TEXT_DOMAIN', 'front-end-login' );
+// Abort if this file is called directly.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
-// Load Classes
+// Constants.
+define( 'MKDO_FRONT_END_LOGIN_ROOT', __FILE__ );
+define( 'MKDO_FRONT_END_LOGIN_NAME', 'Front End Login' );
+define( 'MKDO_FRONT_END_LOGIN_PREFIX', 'mkdo_front_end_login' );
+
+// Classes.
 require_once 'php/class-helper.php';
-require_once 'php/class-plugin-options.php';
-require_once 'php/class-assets-controller.php';
-require_once 'php/class-admin-notices.php';
-require_once 'php/class-login-form.php';
-require_once 'php/class-back-end-access-control.php';
-require_once 'php/class-front-end-access-control.php';
+require_once 'php/class-settings.php';
+require_once 'php/class-access-screen-login.php';
+require_once 'php/class-controller-assets.php';
+require_once 'php/class-controller-main.php';
 require_once 'php/class-logout.php';
-require_once 'php/class-password-reset-form.php';
-require_once 'php/class-main-controller.php';
+require_once 'php/class-notices-admin.php';
+require_once 'php/class-rewrite-urls.php';
+require_once 'php/class-virtual-page.php';
 
-// Use Namespaces
+// Namespaces
+//
+// Add references for each class here. If you add new classes be sure to include
+// the namespace.
 use mkdo\front_end_login\Helper;
-use mkdo\front_end_login\Plugin_Options;
-use mkdo\front_end_login\Assets_Controller;
-use mkdo\front_end_login\Admin_Notices;
-use mkdo\front_end_login\Login_form;
-use mkdo\front_end_login\Back_End_Access_Control;
-use mkdo\front_end_login\Front_End_Access_Control;
+use mkdo\front_end_login\Settings;
+use mkdo\front_end_login\Access_Screen_Login;
+use mkdo\front_end_login\Controller_Assets;
+use mkdo\front_end_login\Controller_Main;
 use mkdo\front_end_login\Logout;
-use mkdo\front_end_login\Password_Reset_Form;
-use mkdo\front_end_login\Main_Controller;
+use mkdo\front_end_login\Notices_Admin;
+use mkdo\front_end_login\Rewrite_URLs;
+use mkdo\front_end_login\Virtual_Page;
 
-// Initialize Classes
-$helper                   = new Helper();
-$plugin_options           = new Plugin_Options();
-$assets_controller        = new Assets_Controller( $plugin_options );
-$admin_notices            = new Admin_Notices( $plugin_options );
-$login_form               = new Login_Form( $plugin_options );
-$back_end_access_control  = new Back_End_Access_Control( $plugin_options );
-$front_end_access_control = new Front_End_Access_Control( $plugin_options );
-$logout                   = new Logout( $plugin_options );
-$password_reset_form      = new Password_Reset_Form( $plugin_options );
-$main_controller          = new Main_Controller(
-	$plugin_options,
-	$assets_controller,
-	$admin_notices,
-	$login_form,
-	$back_end_access_control,
-	$front_end_access_control,
+// Instances.
+$settings                 = new Settings();
+$access_screen_login  	  = new Access_Screen_Login();
+$controller_assets  	  = new Controller_Assets();
+$logout                   = new Logout();
+$notices_admin  	      = new Notices_Admin();
+$rewrite_urls             = new Rewrite_URLs();
+$virtual_page             = new Virtual_Page();
+$controller_main          = new Controller_Main(
+	$settings,
+	$controller_assets,
+	$access_screen_login,
 	$logout,
-	$password_reset_form
+	$notices_admin,
+	$rewrite_urls,
+	$virtual_page
 );
 
-// Run the Plugin
-$main_controller->run();
+// Go.
+$controller_main->run();

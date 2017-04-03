@@ -1,0 +1,32 @@
+{
+	"analyse": [
+		"parker"
+	],
+	"build": [
+		"default",
+		"watch"
+	],
+	"document": [
+		"jsdoc",
+		"phpdoc:all",
+		"sassdoc",
+		"notify:docs"
+	],
+	"images": [
+		"imagemin",
+		"svgmin",
+		"notify:images"
+	],
+	"lint": [
+		"jshint",
+		"phplint:all",
+		"sasslint",
+		"notify:linting"
+	],
+	"maxfilesize": [
+		"maxFilesize"
+	],
+	"spritesmith": [
+		"sprite"
+	]
+}

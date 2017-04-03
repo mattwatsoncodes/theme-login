@@ -1,53 +1,59 @@
 <?php
-namespace mkdo\front_end_login;
 /**
  * Class Logout
  *
- * Class to control logging out
- *
- * @package mkdo\objective_licensing_forms
+ * @package mkdo\front_end_login
+ */
+
+namespace mkdo\front_end_login;
+
+/**
+ * Logout controller.
  */
 class Logout {
-
-	private $options_prefix;
 
 	/**
 	 * Constructor
 	 */
-	function __construct( Plugin_Options $plugin_options ) {
-
-		$this->options_prefix = $plugin_options->get_options_prefix();
-	}
+	function __construct() {}
 
 	/**
 	 * Do Work
 	 */
 	public function run() {
-		add_action( 'logout_url', array( $this, 'logout_url' ) );
 		add_action( 'wp', array( $this, 'do_logout' ) );
 	}
 
-	public function logout_url() {
-
-		$prefix          = $this->options_prefix;
-		$page_login     = Helper::get_page_location( $prefix . 'form_location_login', 'login' );
-		$page_login_url = get_the_permalink( $page_login->ID );
-
-		if ( is_multisite() && 0 === intval( $page_login->ID ) ) {
-			switch_to_blog( BLOG_ID_CURRENT_SITE );
-			$page_login = Helper::get_page_location( $prefix . 'form_location_login', 'login' );
-			$page_login_url = get_the_permalink( $page_login->ID );
-			restore_current_blog();
-		}
-
-		return $page_login_url . '?logout=true';
-	}
-
+	/**
+	 * Logout of WordPress
+	 */
 	public function do_logout() {
 
-		if ( isset( $_GET['logout'] ) ) {
+		global $wp_query;
+
+		// Get the logout slug.
+		$slug = apply_filters(
+			MKDO_FRONT_END_LOGIN_PREFIX . '_logout_slug',
+			'logout'
+		);
+
+		$login_url = home_url( '/' . $slug . '/' );
+
+		// Check if this page is the logout page (dosn't mattter if the page
+		// exists or not).
+		if (
+			is_user_logged_in() &&
+			property_exists( $wp_query, 'query' ) &&
+			isset( $wp_query->query['pagename'] ) &&
+			$slug === $wp_query->query['pagename']
+		) {
+			wp_die();
 			wp_logout();
-			wp_safe_redirect( remove_query_arg( array( 'logout' ) ), 302 );
+			// We cannot use `auth_redirect()` here, because it will throw us into
+			// an infinate loop.
+			//
+			// Instead lets do a manual redirect.
+			wp_safe_redirect( $login_url, 302 );
 			exit;
 		}
 	}

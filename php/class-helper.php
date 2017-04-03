@@ -1,63 +1,47 @@
 <?php
-namespace mkdo\front_end_login;
 /**
  * Class Helper
  *
- * Helper Class
+ * @since	0.1.0
  *
- * @package mkdo\objective_licensing_forms
+ * @package mkdo\front_end_login
+ */
+
+namespace mkdo\front_end_login;
+
+/**
+ * Traits
+ *
+ * Require all the traits you want to use in your Helper here. EG:
+ *
+ * require_once __DIR__ . '/../traits/trait-convert-hashtags-to-twitter-urls.php';
+ * require_once __DIR__ . '/../traits/trait-convert-links-to-link-tags.php';
+ * ...
+ *
+ * Then within the Helper Class include the traits with the 'Use' declaration.
+ */
+require_once __DIR__ . '/../traits/trait-render-view.php';
+
+/**
+ * Helper class containing useful static methods.
+ *
+ * We are using traits, so that only need to 'use' the traits that are valid in
+ * this build.
  */
 class Helper {
 
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-	}
-
-	/**
-	 * Get Template Path
+	 * Include Traits
 	 *
-	 * @param  String $template_name      The name of the template
-	 * @param  array  $template_locations Places to look for the template
-	 * @return String                     The template Path
+	 * Include your traits here so that the methods can be called by
+	 * the Helper. EG:
+	 *
+	 * use Helper_Convert_Hashtags_To_Twitter_URLs;
+	 *
+	 * Having this line of code will enable you to envoke the method
+	 * as if it were part of this Class. EG:
+	 *
+	 * `Helper::convert_hashtags_to_twitter_urls( $content );`
 	 */
-	public static function get_template_path( $template_name, $template_locations = array() ) {
-
-		$template_found 		= false;
-		$template_path 			= $template_name;
-
-		foreach ( $template_locations as $location ) {
-			$template_path = get_stylesheet_directory() . '/' . $location . '/' . $template_name . '.php';
-			if ( file_exists( $template_path ) ) {
-				$template_found = true;
-				break;
-			}
-		}
-
-		if ( ! $template_found ) {
-			$template_path = plugin_dir_path( MKDO_FEL_ROOT ) . 'views/' . $template_name . '.php';
-		}
-
-		return $template_path;
-	}
-
-	public static function get_page_location( $option, $fallback_slug ) {
-		$page_default = get_page_by_path( $fallback_slug );
-		$page_default_id = 0;
-		if ( is_object( $page_default ) ) {
-			$page_default_id = $page_default->ID;
-		}
-		$page_id = get_option(
-			$option,
-			$page_default_id
-		);
-		$page = get_post( $page_id );
-
-		if ( ! is_object( $page ) ) {
-			$page = new \stdClass();
-			$page->ID = 0;
-		}
-		return $page;
-	}
+	use Helper_Render_View;
 }
