@@ -20,6 +20,13 @@
  * If we need to define others we can do it here too.
  */
 
+$username_label = '';
+if ( $username_is_email ) {
+	$username_label = esc_html__( 'Email Address:', 'front-end-login' );
+} else {
+	$username_label = esc_html__( 'Username:', 'front-end-login' );
+}
+
 /**
  * Output
  *
@@ -37,13 +44,13 @@
 
 	<div class="form_login__input form_login__input--username">
 		<label for="username">
-			<?php esc_html_e( 'Email Address:', 'front-end-login' );?>
+			<?php echo esc_html( $username_label );?>
 		</label>
 		<input
 			type="<?php echo $username_is_email ? 'email' : 'text';?>"
 			id="username"
 			name="username"
-			placeholder="<?php esc_html_e( 'Email Address', 'front-end-login' );?>"
+			placeholder="<?php echo esc_html( $username_label );?>"
 			value="<?php echo esc_attr( $username );?>"
 		å/>
 	</div>

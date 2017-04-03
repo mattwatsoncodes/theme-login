@@ -42,7 +42,7 @@ class Form_Login {
 			$invalid_email      = false;
 
 			// We may wish to lock down the username to be the email address only.
-			$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', true );
+			$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
 
 			// Check the nonce.
 			if ( ! wp_verify_nonce( $_POST['form_login_nonce'], 'form_login' ) ) {
@@ -76,7 +76,7 @@ class Form_Login {
 
 				// Setup the credentials.
 				$credentials = array(
-					'user_login'    => sanitize_email( $user_login ),
+					'user_login'    => $user_login,
 					'user_password' => $_POST['password'],
 				);
 
@@ -132,7 +132,7 @@ class Form_Login {
 	public function render_form() {
 		$username          = null;
 		$password          = null;
-		$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', true );
+		$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
 
 		if (
 			isset( $_POST['username'] ) &&
