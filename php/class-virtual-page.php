@@ -87,7 +87,9 @@ class Virtual_Page {
 			'post_content' => apply_filters(
 				MKDO_FRONT_END_LOGIN_PREFIX . '_login_content',
 				''
-			),
+			) .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login_invalid_username_or_password]' .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_login]',
 		);
 
 		$this->post_data['register'] = array(

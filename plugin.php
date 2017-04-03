@@ -33,6 +33,7 @@ require_once 'php/class-settings.php';
 require_once 'php/class-access-screen-login.php';
 require_once 'php/class-controller-assets.php';
 require_once 'php/class-controller-main.php';
+require_once 'php/class-form-login.php';
 require_once 'php/class-logout.php';
 require_once 'php/class-notices-admin.php';
 require_once 'php/class-rewrite-urls.php';
@@ -47,6 +48,7 @@ use mkdo\front_end_login\Settings;
 use mkdo\front_end_login\Access_Screen_Login;
 use mkdo\front_end_login\Controller_Assets;
 use mkdo\front_end_login\Controller_Main;
+use mkdo\front_end_login\Form_Login;
 use mkdo\front_end_login\Logout;
 use mkdo\front_end_login\Notices_Admin;
 use mkdo\front_end_login\Rewrite_URLs;
@@ -56,6 +58,7 @@ use mkdo\front_end_login\Virtual_Page;
 $settings                 = new Settings();
 $access_screen_login  	  = new Access_Screen_Login();
 $controller_assets  	  = new Controller_Assets();
+$form_login               = new Form_Login();
 $logout                   = new Logout();
 $notices_admin  	      = new Notices_Admin();
 $rewrite_urls             = new Rewrite_URLs();
@@ -64,6 +67,7 @@ $controller_main          = new Controller_Main(
 	$settings,
 	$controller_assets,
 	$access_screen_login,
+	$form_login,
 	$logout,
 	$notices_admin,
 	$rewrite_urls,

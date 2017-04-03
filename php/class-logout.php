@@ -32,22 +32,27 @@ class Logout {
 		global $wp_query;
 
 		// Get the logout slug.
-		$slug = apply_filters(
+		$logout_slug = apply_filters(
 			MKDO_FRONT_END_LOGIN_PREFIX . '_logout_slug',
 			'logout'
 		);
 
-		$login_url = home_url( '/' . $slug . '/' );
+		// Get the login slug.
+		$login_slug = apply_filters(
+			MKDO_FRONT_END_LOGIN_PREFIX . '_login_slug',
+			'login'
+		);
+
+		// Get the login URL.
+		$login_url = home_url( '/' . $login_slug . '/' );
 
 		// Check if this page is the logout page (dosn't mattter if the page
 		// exists or not).
 		if (
-			is_user_logged_in() &&
 			property_exists( $wp_query, 'query' ) &&
 			isset( $wp_query->query['pagename'] ) &&
-			$slug === $wp_query->query['pagename']
+			$logout_slug === $wp_query->query['pagename']
 		) {
-			wp_die();
 			wp_logout();
 			// We cannot use `auth_redirect()` here, because it will throw us into
 			// an infinate loop.

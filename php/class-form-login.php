@@ -25,12 +25,14 @@ class Form_Login {
 	public function run() {
 		add_action( 'init', array( $this, 'submit' ) );
 		add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_form', array( $this, 'render_form' ) );
+		add_action( 'init', array( $this, 'register_shortcodes' ) );
 	}
 
 	/**
 	 * Form Submission
 	 */
 	public function submit() {
+
 		if (
 			isset( $_POST['username'] ) &&
 			isset( $_POST['form_login_nonce'] )
@@ -96,7 +98,7 @@ class Form_Login {
 					//
 					// Lets get the home URL details.
 					$page_home    = get_option( 'page_on_front' );
-					$redirect_url = get_the_permalink( $page_home->ID );
+					$redirect_url = get_the_permalink( $page_home );
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
@@ -110,10 +112,9 @@ class Form_Login {
 					exit;
 				}
 			}
-
 			// If we had errors.
 			if ( $incorrect_password || $invalid_email ) {
-				add_action( 'front_end_login_render_notices', array( $this, 'render_notice' ) );
+				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices', array( $this, 'render_notice' ) );
 			}
 		}
 	}
@@ -122,7 +123,7 @@ class Form_Login {
 	 * Render notice
 	 */
 	public function render_notice() {
-		require Helper::render_view( 'view-notice-invalid-username-or-password' );
+		require Helper::render_view( 'view-login-notice-invalid-username-or-password' );
 	}
 
 	/**
@@ -142,5 +143,37 @@ class Form_Login {
 			$password = $_POST['password'];
 		}
 		require Helper::render_view( 'view-form-login' );
+	}
+
+	/**
+	 * Register the shortcodes
+	 */
+	public function register_shortcodes() {
+
+		// add the shortcodes.
+		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login', array( $this, 'render_form_action' ) );
+		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login_invalid_username_or_password', array( $this, 'render_notice_actions' ) );
+	}
+
+	/**
+	 * Render form action.
+	 *
+	 * @return string Form
+	 */
+	public function render_form_action() {
+		ob_start();
+		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_form' );
+		return ob_get_clean();
+	}
+
+	/**
+	 * Render the notice actions.
+	 *
+	 * @return string Notices
+	 */
+	public function render_notice_actions() {
+		ob_start();
+		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices' );
+		return ob_get_clean();
 	}
 }

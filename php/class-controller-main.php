@@ -42,6 +42,15 @@ class Controller_Main {
 	private $access_screen_login;
 
 	/**
+	 * The login form.
+	 *
+	 * @var 	object
+	 * @access	private
+	 * @since	0.1.0
+	 */
+	private $form_login;
+
+	/**
 	 * Logout controller
 	 *
 	 * @var 	object
@@ -83,6 +92,7 @@ class Controller_Main {
 	 * @param Settings		      $settings            Define the settings page.
 	 * @param Controller_Assets   $controller_assets   Enqueue the public and admin assets.
 	 * @param Access_Screen_Login $access_screen_login Control access to the login screen.
+	 * @param Form_Login          $form_login          The login form.
 	 * @param Logout              $logout              Logout controller.
 	 * @param Notices_Admin       $notices_admin       Notices on the admin screens.
 	 * @param Rewrite_URLs        $rewrite_urls        Rewrite common WordPress URLs.
@@ -94,6 +104,7 @@ class Controller_Main {
 		Settings $settings,
 		Controller_Assets $controller_assets,
 		Access_Screen_Login $access_screen_login,
+		Form_Login $form_login,
 		Logout $logout,
 		Notices_Admin $notices_admin,
 		Rewrite_URLs $rewrite_urls,
@@ -102,6 +113,7 @@ class Controller_Main {
 		$this->settings            = $settings;
 		$this->controller_assets   = $controller_assets;
 		$this->access_screen_login = $access_screen_login;
+		$this->form_login          = $form_login;
 		$this->logout              = $logout;
 		$this->notices_admin       = $notices_admin;
 		$this->rewrite_urls        = $rewrite_urls;
@@ -123,6 +135,7 @@ class Controller_Main {
 		$this->settings->run();
 		$this->controller_assets->run();
 		$this->access_screen_login->run();
+		$this->form_login->run();
 		$this->logout->run();
 		$this->notices_admin->run();
 		$this->rewrite_urls->run();
