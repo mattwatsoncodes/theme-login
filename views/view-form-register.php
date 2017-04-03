@@ -33,20 +33,24 @@
 	<?php
 	// Add a filter to add controls before the username.
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_username' );
-	?>
 
-	<div class="form_register__input form_register__input--username">
-		<label for="username">
-			<?php esc_html_e( 'Username:', 'front-end-login' );?>
-		</label>
-		<input
-			type="text"
-			id="username"
-			name="username"
-			placeholder="<?php esc_html_e( 'Username', 'front-end-login' );?>"
-			value="<?php echo esc_attr( $username );?>"
-		/>
-	</div>
+	if ( ! $username_is_email ) {
+		?>
+		<div class="form_register__input form_register__input--username">
+			<label for="username">
+				<?php esc_html_e( 'Username:', 'front-end-login' );?>
+			</label>
+			<input
+				type="text"
+				id="username"
+				name="username"
+				placeholder="<?php esc_html_e( 'Username', 'front-end-login' );?>"
+				value="<?php echo esc_attr( $username );?>"
+			/>
+		</div>
+		<?php
+	}
+	?>
 
 	<div class="form_register__input form_register__input--email">
 		<label for="email">
@@ -60,6 +64,8 @@
 			value="<?php echo esc_attr( $email );?>"
 		/>
 	</div>
+
+	<p><?php esc_html_e( 'Registration confirmation will be emailed to you.', 'front-end-login' );?></p>
 
 	<?php
 	// Add a filter to add controls before the submit button.
