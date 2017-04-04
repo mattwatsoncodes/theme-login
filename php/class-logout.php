@@ -44,7 +44,7 @@ class Logout {
 		);
 
 		// Get the login URL.
-		$login_url = home_url( '/' . $login_slug . '/' );
+		$login_url = network_home_url( '/' . $login_slug . '/' );
 
 		// Check if this page is the logout page (dosn't mattter if the page
 		// exists or not).

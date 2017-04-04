@@ -224,7 +224,7 @@ class Form_Register {
 					);
 
 					// Get the login URL.
-					$redirect_url = home_url( '/' . $login_slug . '/' );
+					$redirect_url = network_home_url( '/' . $login_slug . '/' );
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.

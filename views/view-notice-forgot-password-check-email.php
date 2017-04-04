@@ -1,6 +1,6 @@
 <?php
 /**
- * Example
+ * Check Email
  *
  * If you wish to override this file, you can do so by creating a version in your
  * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook

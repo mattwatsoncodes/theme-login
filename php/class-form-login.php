@@ -33,6 +33,12 @@ class Form_Login {
 	 */
 	public function submit() {
 
+		// Render notices on redirect.
+		if ( isset( $_GET['password_reset'] ) ) {
+			add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notice', array( $this, 'render_notice_password_reset' ) );
+		}
+
+		// Do the form login.
 		if (
 			isset( $_POST['username'] ) &&
 			isset( $_POST['form_login_nonce'] )
@@ -130,6 +136,13 @@ class Form_Login {
 	 */
 	public function render_notice() {
 		require Helper::render_view( 'view-notice-login-invalid-username-or-password' );
+	}
+
+	/**
+	 * Render notice
+	 */
+	public function render_notice_password_reset() {
+		require Helper::render_view( 'view-notice-login-password-reset' );
 	}
 
 	/**

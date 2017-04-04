@@ -102,6 +102,8 @@
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_after_form' );
 	?>
 
+	<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>" />
+
 	<?php
 	// Render the NOnce for security.
 	wp_nonce_field( 'form_forgot_password_reset', 'form_forgot_password_reset_nonce' );

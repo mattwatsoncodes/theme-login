@@ -71,9 +71,6 @@ if ( $username_is_email ) {
 	<nav class="mkdo_form__navigation form_navigation" role="navigation">
 		<ul>
 			<li class="form_navigation__item">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"><?php esc_html_e( 'Forgot Password?', 'front-end-login' );?></a>
-			</li>
-			<li class="form_navigation__item">
 				<a href="<?php echo esc_url( wp_login_url() ); ?>" title="<?php esc_html_e( 'Login', 'front-end-login' );?>"><?php esc_html_e( 'Login', 'front-end-login' );?></a>
 			</li>
 			<?php

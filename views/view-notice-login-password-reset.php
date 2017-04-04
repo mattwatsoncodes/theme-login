@@ -1,6 +1,6 @@
 <?php
 /**
- * Invalid Username or Password
+ * Password Reset
  *
  * If you wish to override this file, you can do so by creating a version in your
  * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook
@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="mkdo_alert alert-box warning" role="alert">
-	<?php esc_html_e( 'The username or password you have entered is not valid.', 'front-end-login' ); ?>
+<aside data-alert class="mkdo_alert alert-box success" role="alert">
+	<?php esc_html_e( 'You have successfully reset your password. Please login.', 'front-end-login' ); ?>
 	<a href="#" class="close">&times;</a>
 </aside>
