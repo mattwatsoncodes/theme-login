@@ -112,4 +112,4 @@ You can also render the forms and notifications with the following shortcodes:
 
 ## [Credit](#credit)
 
-Built using the [Front End Login](https://github.com/mwtsn/front-end-login) plugin framework. A framework based on root composition principles, built by [Matt Watson](https://github.com/mwtsn/) and [Dave Green](https://github.com/davetgreen/), with thanks to [Make Do](https://www.makedo.net/).
+Built using the [Ground Control](https://github.com/mwtsn/ground-control) plugin framework. A framework based on root composition principles, built by [Matt Watson](https://github.com/mwtsn/) and [Dave Green](https://github.com/davetgreen/), with thanks to [Make Do](https://www.makedo.net/).
