@@ -114,7 +114,7 @@ class Form_Register {
 					'display_name'         => sanitize_email( $email ),
 					'first_name'           => '',
 					'last_name'            => '',
-					'role'                 => 'subscriber',
+					'role'                 => get_option( 'default_role', 'subscriber' ),
 					'show_admin_bar_front' => false,
 				);
 
