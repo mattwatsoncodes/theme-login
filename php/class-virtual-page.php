@@ -88,7 +88,7 @@ class Virtual_Page {
 				MKDO_FRONT_END_LOGIN_PREFIX . '_login_content',
 				''
 			) .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login_invalid_username_or_password]' .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login]' .
 			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_login]',
 		);
 
@@ -103,6 +103,7 @@ class Virtual_Page {
 				MKDO_FRONT_END_LOGIN_PREFIX . '_register_content',
 				''
 			) .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_register]' .
 			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_register]',
 		);
 
@@ -116,7 +117,9 @@ class Virtual_Page {
 			'post_content' => apply_filters(
 				MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_content',
 				''
-			),
+			) .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_forgot_password]' .
+			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_forgot_password]',
 		);
 	}
 

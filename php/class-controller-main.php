@@ -42,6 +42,15 @@ class Controller_Main {
 	private $access_screen_login;
 
 	/**
+	 * The forgot password form.
+	 *
+	 * @var 	object
+	 * @access	private
+	 * @since	0.1.0
+	 */
+	private $form_forgot_password;
+
+	/**
 	 * The login form.
 	 *
 	 * @var 	object
@@ -98,15 +107,16 @@ class Controller_Main {
 	/**
 	 * Constructor.
 	 *
-	 * @param Settings		      $settings            Define the settings page.
-	 * @param Controller_Assets   $controller_assets   Enqueue the public and admin assets.
-	 * @param Access_Screen_Login $access_screen_login Control access to the login screen.
-	 * @param Form_Login          $form_login          The login form.
-	 * @param Form_Register       $form_register       The registration form.
-	 * @param Logout              $logout              Logout controller.
-	 * @param Notices_Admin       $notices_admin       Notices on the admin screens.
-	 * @param Rewrite_URLs        $rewrite_urls        Rewrite common WordPress URLs.
-	 * @param Virtual_Page        $virtual_page        Create virtual pages if login slugs don't exist.
+	 * @param Settings		       $settings             Define the settings page.
+	 * @param Controller_Assets    $controller_assets    Enqueue the public and admin assets.
+	 * @param Access_Screen_Login  $access_screen_login  Control access to the login screen.
+	 * @param Form_Forgot_Password $form_forgot_password The login form.
+	 * @param Form_Login           $form_login           The login form.
+	 * @param Form_Register        $form_register        The registration form.
+	 * @param Logout               $logout               Logout controller.
+	 * @param Notices_Admin        $notices_admin        Notices on the admin screens.
+	 * @param Rewrite_URLs         $rewrite_urls         Rewrite common WordPress URLs.
+	 * @param Virtual_Page         $virtual_page         Create virtual pages if login slugs don't exist.
 	 *
 	 * @since 0.1.0
 	 */
@@ -114,6 +124,7 @@ class Controller_Main {
 		Settings $settings,
 		Controller_Assets $controller_assets,
 		Access_Screen_Login $access_screen_login,
+		Form_Forgot_Password $form_forgot_password,
 		Form_Login $form_login,
 		Form_Register $form_register,
 		Logout $logout,
@@ -121,15 +132,16 @@ class Controller_Main {
 		Rewrite_URLs $rewrite_urls,
 		Virtual_Page $virtual_page
 	) {
-		$this->settings            = $settings;
-		$this->controller_assets   = $controller_assets;
-		$this->access_screen_login = $access_screen_login;
-		$this->form_login          = $form_login;
-		$this->form_register       = $form_register;
-		$this->logout              = $logout;
-		$this->notices_admin       = $notices_admin;
-		$this->rewrite_urls        = $rewrite_urls;
-		$this->virtual_page        = $virtual_page;
+		$this->settings             = $settings;
+		$this->controller_assets    = $controller_assets;
+		$this->access_screen_login  = $access_screen_login;
+		$this->form_forgot_password = $form_forgot_password;
+		$this->form_login           = $form_login;
+		$this->form_register        = $form_register;
+		$this->logout               = $logout;
+		$this->notices_admin        = $notices_admin;
+		$this->rewrite_urls         = $rewrite_urls;
+		$this->virtual_page         = $virtual_page;
 	}
 
 	/**
@@ -147,6 +159,7 @@ class Controller_Main {
 		$this->settings->run();
 		$this->controller_assets->run();
 		$this->access_screen_login->run();
+		$this->form_forgot_password->run();
 		$this->form_login->run();
 		$this->form_register->run();
 		$this->logout->run();

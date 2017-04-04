@@ -120,7 +120,7 @@ class Form_Login {
 			}
 			// If we had errors.
 			if ( $incorrect_password || $invalid_email ) {
-				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices', array( $this, 'render_notice' ) );
+				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notice', array( $this, 'render_notice' ) );
 			}
 		}
 	}
@@ -129,7 +129,7 @@ class Form_Login {
 	 * Render notice
 	 */
 	public function render_notice() {
-		require Helper::render_view( 'view-login-notice-invalid-username-or-password' );
+		require Helper::render_view( 'view-notice-login-invalid-username-or-password' );
 	}
 
 	/**
@@ -161,7 +161,7 @@ class Form_Login {
 
 		// add the shortcodes.
 		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login', array( $this, 'render_form_action' ) );
-		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login_invalid_username_or_password', array( $this, 'render_notice_actions' ) );
+		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login', array( $this, 'render_notice_action' ) );
 	}
 
 	/**
@@ -176,13 +176,13 @@ class Form_Login {
 	}
 
 	/**
-	 * Render the notice actions.
+	 * Render the notice action.
 	 *
 	 * @return string Notices
 	 */
-	public function render_notice_actions() {
+	public function render_notice_action() {
 		ob_start();
-		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notices' );
+		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_render_notice' );
 		return ob_get_clean();
 	}
 }

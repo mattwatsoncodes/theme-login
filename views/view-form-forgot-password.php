@@ -1,6 +1,6 @@
 <?php
 /**
- * Form Login
+ * Form Forgot Password
  *
  * If you wish to override this file, you can do so by creating a version in your
  * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook
@@ -14,7 +14,6 @@
  *
  * The following variables can be used in this view.
  * $username          = '';
- * $password          = '';
  * $username_is_email = true;
  *
  * If we need to define others we can do it here too.
@@ -35,11 +34,11 @@ if ( $username_is_email ) {
  */
 ?>
 
-<form id="form_login" class="mkdo_form" method="post" autocomplete="off">
+<form id="form_forgot_password" class="mkdo_form" method="post" autocomplete="off">
 
 	<?php
 	// Add a filter to add controls before the username.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_username' );
+	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_before_username' );
 	?>
 
 	<div class="mkdo_form__input mkdo_form__input--username">
@@ -56,41 +55,26 @@ if ( $username_is_email ) {
 	</div>
 
 	<?php
-	// Add a filter to add controls before the password.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_password' );
-	?>
-
-	<div class="mkdo_form__input mkdo_form__input--password">
-		<label for="username">
-			<?php esc_html_e( 'Password:', 'front-end-login' );?>
-		</label>
-		<input
-			type="password"
-			id="password"
-			name="password"
-			placeholder="<?php esc_html_e( 'Password', 'front-end-login' );?>"
-			value="<?php echo $password;?>"
-		/>
-	</div>
-
-	<?php
 	// Add a filter to add controls before the submit button.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_submit' );
+	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_before_submit' );
 	?>
 
 	<div class="mkdo_form__input mkdo_form__input--submit">
-		<input class="btn button mkdo_form__button" type="submit" value="<?php esc_html_e( 'Login', 'front-end-login' );?>"/>
+		<input class="btn button mkdo_form__button" type="submit" value="<?php esc_html_e( 'Reset Password', 'front-end-login' );?>"/>
 	</div>
 
 	<?php
 	// Add a filter to add controls before the navigation.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_before_navigation' );
+	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_before_navigation' );
 	?>
 
 	<nav class="mkdo_form__navigation form_navigation" role="navigation">
 		<ul>
 			<li class="form_navigation__item">
 				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"><?php esc_html_e( 'Forgot Password?', 'front-end-login' );?></a>
+			</li>
+			<li class="form_navigation__item">
+				<a href="<?php echo esc_url( wp_login_url() ); ?>" title="<?php esc_html_e( 'Login', 'front-end-login' );?>"><?php esc_html_e( 'Login', 'front-end-login' );?></a>
 			</li>
 			<?php
 			if ( get_option( 'users_can_register' ) ) {
@@ -106,11 +90,11 @@ if ( $username_is_email ) {
 
 	<?php
 	// Add a filter to add controls after the form.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_login_after_form' );
+	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_after_form' );
 	?>
 
 	<?php
 	// Render the NOnce for security.
-	wp_nonce_field( 'form_login', 'form_login_nonce' );
+	wp_nonce_field( 'form_forgot_password', 'form_forgot_password_nonce' );
 	?>
 </form>
