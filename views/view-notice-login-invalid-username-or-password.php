@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="mkdo_alert alert-box warning" role="alert">
+<aside data-alert class="mkdo_alert mkdo_alert--warning alert-box warning" role="alert">
 	<?php esc_html_e( 'The username or password you have entered is not valid.', 'front-end-login' ); ?>
 	<a href="#" class="close">&times;</a>
 </aside>

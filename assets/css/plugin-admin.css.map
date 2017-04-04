@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"sourceRoot": "assets/css",
+	"file": "plugin-admin.css",
+	"sources": [
+		"../src/sass/plugin-admin.scss"
+	],
+	"sourcesContent": [
+		""
+	],
+	"mappings": "",
+	"names": []
+}

@@ -15,9 +15,8 @@ You can also view the plugin on the WordPress repository here: N/A
 ## [Roadmap](#roadmap)
 A bunch of features will be coming to this plugin, including:
 
-- Add basic styles that can be overridden by the user
-- Create accompanying plugin to enable UI setting of page slugs and redirect locations
-- Create accompanying plugin to enable the customisation of registration and password reset emails
+- Create accompanying plugin / options to enable UI setting of page slugs and redirect locations
+- Create accompanying plugin / options to enable the customisation of registration and password reset emails
 
 ## [Hooks](#hooks)
 

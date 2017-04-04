@@ -59,7 +59,7 @@ class Controller_Assets {
 	 * @since	0.1.0
 	 */
 	public function run() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'public_enqueue_scripts' ), 10 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'public_enqueue_scripts' ), 10 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10 );
 		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ), 10 );
 	}
@@ -71,9 +71,9 @@ class Controller_Assets {
 	 */
 	public function public_enqueue_scripts() {
 
-		$do_public_enqueue     = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_enqueue', false );
-		$do_public_css_enqueue = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_css_enqueue', false );
-		$do_public_js_enqueue  = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_js_enqueue', false );
+		$do_public_enqueue     = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_enqueue', true );
+		$do_public_css_enqueue = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_css_enqueue', true );
+		$do_public_js_enqueue  = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_do_public_js_enqueue', true );
 
 		/* CSS */
 		if ( $do_public_enqueue && $do_public_css_enqueue ) {
