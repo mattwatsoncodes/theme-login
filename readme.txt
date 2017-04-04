@@ -23,49 +23,38 @@ virtual pages that you can override in your theme.
 built in hooks (see FAQ for more).
 - Change content on virtual pages via built in hooks (see FAQ for more).
 
+== Frequently Asked Questions ==
+
+= How can I disable access to the WordPress dashboard for certain logged in users? =
+
+Use the [Restrict Dashboard by Role](https://en-gb.wordpress.org/plugins/restrict-dashboard-by-role/) plugin to do this.
+
+= How can I make it so users have to login to view certain pages or content? =
+
+Use the [Restrict Content by Role](https://en-gb.wordpress.org/plugins/restrict-content-by-role/) plugin to do this.
+
+= I want to use custom templates for the 'login pages', how can I do this? =
+
+You can do this via the instructions here: [Custom Templates](https://github.com/mwtsn/front-end-login/blob/master/README.md#faqs-custom-templates)
+
+= How can I customise the slugs to the login, forgot-password, logout and register pages? =
+
+There are hooks available to do this: [Customise page paths](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-page-paths)
+
+= Can I force the plugin to use an email address as the username? =
+
+Yes you can! View this hook: [Email Login](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-email-login)
+
+= What is the best way to report an issue? =
+
+I would prefer issues come to the GitHub repository. You can [report an issue here](https://github.com/mwtsn/front-end-login/issues).
+
 == Installation ==
 
 1. Download this repository and unzip it into the folder `front-end-login`
 2. Upload the `front-end-login` folder to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Configure the plugin via the 'Front End Login' options page under the WordPress 'Settings' Menu
-
-== Frequently Asked Questions ==
-
-= How can I disable access to the WordPress dashboard for certain logged in users? =
-Use the [Restrict Dashboard by Role](https://en-gb.wordpress.org/plugins/restrict-dashboard-by-role/) plugin to do this.
-
-= How can I make it so users have to login to view certain pages or content? =
-Use the [Restrict Content by Role](https://en-gb.wordpress.org/plugins/restrict-content-by-role/) plugin to do this.
-
-= How can I customise the slugs to the login, forgot-password, logout and register pages? =
-
-You can use the following filters:
-
-__Login__
-
-`mkdo_front_end_login_login_slug`
-
-__Register__
-
-`mkdo_front_end_login_register_slug`
-
-__Forgot Password__
-
-`mkdo_front_end_login_lostpassword_slug`
-
-__Logout__
-
-`mkdo_front_end_login_logout_slug`
-
-__Usage:__
-
-The following line of code, when added to `functions.php` will change the login
-page slug to `admin/login`.
-
-`add_filter( 'mkdo_front_end_login_login_slug', function() {
-	return 'admin/login';
-} );`
 
 == Changelog ==
 

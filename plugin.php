@@ -8,7 +8,7 @@
  * Plugin Name:       Front End Login
  * Plugin URI:        https://github.com/mkdo/front-end-login
  * Description:       A brief description of the plugin.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            Make Do <hello@makedo.net>
  * Author URI:        https://makedo.net
  * License:           GPL-2.0+
