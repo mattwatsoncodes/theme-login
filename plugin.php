@@ -7,7 +7,7 @@
  *
  * Plugin Name:       Front End Login
  * Plugin URI:        https://github.com/mkdo/front-end-login
- * Description:       A brief description of the plugin.
+ * Description:       Login, Register and Reset Password, all from the front-end of your WordPress theme.
  * Version:           1.0.0
  * Author:            Make Do <hello@makedo.net>
  * Author URI:        https://makedo.net
