@@ -26,6 +26,29 @@ enough documented for you to figure out what they do (if not, please raise an is
 
 A few of the more useful hooks are:
 
+#### [Enqueues](#hooks-enqueues)
+
+CSS and JS Enqueues exist within the plugin for reference and development, but
+we highly recommend that the appropriate filters are used to deactivate these
+enqueues, and these are concatenated and enqueued using your own theme workflow.
+
+Don't have a workflow? We recommend [Kapow](https://github.com/mkdo/kapow-setup).
+
+The enqueue filters all accept a boolean, and the ones the plugin uses are set to true by default. Use the following method to disable them:
+
+`add_filter( 'mkdo_front_end_login_[filter_name]', '__return_false');`
+
+The filters available are:
+
+- `mkdo_front_end_login_do_public_enqueue` &mdash; hide all the public asset enqueues (set to `true`).
+- `mkdo_front_end_login_do_public_css_enqueue` &mdash; hide the public CSS enqueue (set to `true`).
+- `mkdo_front_end_login_do_public_js_enqueue` &mdash; hide the public JS enqueue (set to `true`).
+- `mkdo_front_end_login_do_admin_enqueue` &mdash; hide all the admin asset enqueues.
+- `mkdo_front_end_login_do_admin_css_enqueue` &mdash; hide the admin CSS enqueue.
+- `mkdo_front_end_login_do_admin_editor_css_enqueue` &mdash; hide the admin editor CSS enqueue.
+- `mkdo_front_end_login_do_admin_js_enqueue` &mdash; hide the admin JS enqueue.
+- `mkdo_front_end_login_do_customizer_enqueue` &mdash; hide the customizer CSS enqueue.
+
 #### [Render Views](#hooks-render-views)
 Views reside within the `/views` folder in the plugin, but you may wish to override
 these views in your theme.

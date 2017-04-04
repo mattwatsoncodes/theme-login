@@ -25,6 +25,11 @@ built in hooks (see FAQ for more).
 
 == Frequently Asked Questions ==
 
+= Gah! These styles are horrible, how do I set my own? =
+
+Simple, turn off the default styles and JavaScript and incorporate them into your
+own Workflow / Stylesheet with the following hook: [Enqueues](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-enqueues)
+
 = How can I disable access to the WordPress dashboard for certain logged in users? =
 
 Use the [Restrict Dashboard by Role](https://en-gb.wordpress.org/plugins/restrict-dashboard-by-role/) plugin to do this.
