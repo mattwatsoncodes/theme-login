@@ -2,6 +2,8 @@
 
 Front End Login plugin for WordPress.
 
+![Front End Login](https://github.com/mkdo/front-end-login/blob/master/assets/banner-1544x500.png?raw=true "Front End Login")
+
 ## [More Information](#more-information)
 You can find out more about the plugin, including the changelog in the [`readme.txt` file](https://github.com/mwtsn/front-end-login/blob/master/readme.txt), which the
 WordPress repository uses to display information about the plugin.
