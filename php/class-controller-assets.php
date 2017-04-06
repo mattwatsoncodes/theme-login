@@ -54,7 +54,7 @@ class Controller_Assets {
 	}
 
 	/**
-	 * Unleash Hell.
+	 * Go.
 	 *
 	 * @since	0.1.0
 	 */
@@ -83,8 +83,7 @@ class Controller_Assets {
 				MKDO_FRONT_END_LOGIN_PREFIX . '-plugin-css',
 				$plugin_css_url,
 				array(),
-				filemtime( $plugin_css_path ),
-				false
+				filemtime( $plugin_css_path )
 			);
 		}
 
@@ -122,8 +121,7 @@ class Controller_Assets {
 				MKDO_FRONT_END_LOGIN_PREFIX . '-plugin-admin-css',
 				$plugin_css_url,
 				array(),
-				filemtime( $plugin_css_path ),
-				false
+				filemtime( $plugin_css_path )
 			);
 		}
 
