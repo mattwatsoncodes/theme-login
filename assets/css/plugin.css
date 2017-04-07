@@ -3,7 +3,7 @@
    PLUGIN SCSS
    ========================================================================== */
 /**
- * CSS for the plugin that runs on the front end.
+ * CSS for the plugin front end.
  *
  * This CSS in this plugin has been lovingly buit with the
  * [Inuit CSS](https://github.com/inuitcss) framework. By
@@ -286,13 +286,17 @@
    #LOGIN-FORMS
    ========================================================================== */
 /**
- * 1. Make the inputs full width.
+ * 1. Add the default spacing to seperate the elements.
+ * 2. Make the inputs full width.
  */
-.c-login-form__input input[type=text],
-.c-login-form__input input[type=email],
-.c-login-form__input input[type=password] {
-  width: 100%;
+.c-login-form__input {
+  margin-bottom: 24px;
   /* [1] */ }
+  .c-login-form__input input[type=text],
+  .c-login-form__input input[type=email],
+  .c-login-form__input input[type=password] {
+    width: 100%;
+    /* [2] */ }
 
 .c-login-form__navigation {
   padding-left: 0px;

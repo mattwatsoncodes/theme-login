@@ -1,0 +1,30 @@
+# Git Ignore for Front End Login.
+# -----------------------------------------------------------------------------
+
+# Flotsam & Jetsam.
+# -------------------------------------
+.DS_Store
+
+# Nested Git files.
+# -------------------------------------
+**/.git
+**/.gitignore
+**/.gitmodules
+
+# Composer.
+# -------------------------------------
+composer.lock
+
+# Dependencies.
+# -------------------------------------
+bower_components
+node_modules
+tools/bower_components
+tools/node_modules
+
+# Documentation & Reports.
+# -------------------------------------
+docs/*
+tools/docs/*
+reports/*
+tools/reports/*
