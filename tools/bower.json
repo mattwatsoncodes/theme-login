@@ -1,17 +1,18 @@
 {
-	"name": "front-end-login",
-	"version": "0.1.0",
-	"authors": [
-		"mwtsn, mkdo"
-	],
-	"license": "MIT",
-	"private": true,
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components"
-	],
-	"dependencies": {
-		"modernizr": "latest"
-	}
+  "name": "front-end-login",
+  "version": "0.1.0",
+  "authors": [
+    "mwtsn, mkdo"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "modernizr": "latest",
+    "inuitcss": "^6.0.0-beta.4"
+  }
 }
