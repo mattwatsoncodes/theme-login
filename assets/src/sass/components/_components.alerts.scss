@@ -1,0 +1,80 @@
+/* ==========================================================================
+   #ALERTS
+   ========================================================================== */
+
+/**
+ * @see https://codepen.io/MattIn4D/pen/jDvLl
+ */
+
+/**
+ * 1. Ensure the close button floats.
+ * 2. Default colour.
+ * 3. Default background colour.
+ * 4. Border and default colour.
+ * 5. Ensure the first p has no top margin.
+ * 6. Ensure the last p has no bottom margin.
+ */
+
+.c-alert {
+  position: relative; /* [1] */
+  color: #8a6d3b; /* [2] */
+  background: #fcf8e3; /* [3] */
+  border: 1px solid #faebcc; /* [4] */
+
+  p:first-of-type {
+	margin-top: 0px; /* [5] */
+  }
+
+  p:last-of-type {
+	margin-bottom: 0px; /* [6] */
+  }
+}
+
+/**
+ * 1. Ensure the close button uses a mouse pointer.
+ * 2. Absolute position the element.
+ * 3. Give the element some padding.
+ * 4. Position the element at the top.
+ * 5. Position the element at the right.
+ * 6. Float the element to the right.
+ * 7. Inherit the colour of the container element.
+ * 8. Set the font size.
+ * 9. Set the line hight.
+ * 10. Set the font weight to bold.
+ * 11. Ensure there is no underline.
+ */
+
+.c-alert__close {
+  cursor: pointer; /* [1] */
+  position: absolute; /* [2] */
+  padding: 0 0.5em; /* [3] */
+  top: 0; /* [4] */
+  right: 0; /* [5] */
+  float: right; /* [6] */
+  color: inherit; /* [7] */
+  font-size: 1.3em; /* [8] */
+  line-height: 1.5em; /* [9] */
+  font-weight: bold; /* [10] */
+  text-decoration: none; /* [11] */
+}
+
+/* Style variants
+   ========================================================================== */
+
+.c-alert--success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.c-alert--warning {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+.c-alert--info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}

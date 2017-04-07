@@ -132,14 +132,34 @@ class Virtual_Page {
 
 		global $wp_query;
 
-		// If the post matches the slug.
+		// Get the page slug.
+		$slug = '';
 		if (
 			property_exists( $wp_query, 'query' ) &&
-			isset( $wp_query->query['pagename'] ) &&
-			in_array( $wp_query->query['pagename'], $this->slugs, true )
+			isset( $wp_query->query['pagename'] )
 		) {
 			$slug = $wp_query->query['pagename'];
-			$key  = array_search ( $slug , $this->slugs, true );
+		} elseif (
+			property_exists( $wp_query, 'query' ) &&
+			isset( $wp_query->query['name'] )
+		) {
+			$slug = $wp_query->query['name'];
+		} elseif (
+			property_exists( $wp_query, 'query_vars' ) &&
+			isset( $wp_query->query_vars['pagename'] )
+		) {
+			$slug = $wp_query->query_vars['pagename'];
+		} elseif (
+			property_exists( $wp_query, 'query_vars' ) &&
+			isset( $wp_query->query_vars['name'] )
+		) {
+			$slug = $wp_query->query_vars['name'];
+		}
+
+		// If the post matches the slug.
+		if ( in_array( $slug, $this->slugs, true ) ) {
+
+			$key  = array_search( $slug , $this->slugs, true );
 
 			// We need to virtually create the page.
 			$post_object = new \stdClass();

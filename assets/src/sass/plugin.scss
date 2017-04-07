@@ -1,99 +1,206 @@
-/**
- *  Mixins
- */
+@charset "UTF-8";
 
-.visually-hidden {
-	margin: -1px;
-	padding: 0;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	clip: rect(0 0 0 0);
-	clip: rect(0, 0, 0, 0);
-	position: absolute;
-}
+/* ==========================================================================
+   PLUGIN SCSS
+   ========================================================================== */
 
 /**
- *  Alerts
+ * CSS for the plugin that runs on the front end.
+ *
+ * This CSS in this plugin has been lovingly buit with the
+ * [Inuit CSS](https://github.com/inuitcss) framework. By
+ * [Harry Roberts](https://csswizardry.com).
+ *
+ * The CSS here should exist here just for reference. We highly recommend that
+ * you delete, this CSS and create your own within your existing theme, and
+ * concatinate it within your existing workflow.
  */
 
-.mkdo_alert {
-	position: relative;
-	border: 1px solid #ccc;
-	color: #444;
-	padding: 5px 15px 5px 30px;
-	margin-bottom: 16px;
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Config...............Project-level configuration and feature switches.
+ * Core.................inuitcss’ core and setup settings.
+ * Global...............Project-wide variables and settings.
+ *
+ * TOOLS
+ * Font-size............A mixin which guarantees baseline-friendly line-heights.
+ * Clearfix.............Micro clearfix mixin.
+ * Hidden...............Mixin for hiding elements.
+ * Sass MQ..............inuitcss’ default media query manager.
+ *
+ * GENERIC
+ * Box-sizing...........Better default `box-sizing`.
+ * Normalize.css........A level playing field using @necolas’ Normalize.css.
+ * Reset................A tiny reset to complement Normalize.css.
+ * Shared...............Sensibly and tersely share some global commonalities
+ *                      (particularly useful when managing vertical rhythm).
+ *
+ * ELEMENTS
+ * Page.................Set up our document’s default `font-size` and
+ *                      `line-height`.
+ * Headings.............Very minimal (i.e. only font-size information) for
+ *                      headings 1 through 6.
+ * Images...............Base image styles.
+ * Tables...............Simple table styles.
+ *
+ * OBJECTS
+ * Wrapper..............Page constraint object.
+ * Layout...............Generic layout module.
+ * Media................Image- and text-like content side by side. The
+ *                      poster-child of OOCSS.
+ * Flag.................Table-layout-based advancement on the Media object.
+ * List-bare............Lists with no bullets or indents.
+ * List-inline..........A list whose items all site in a line.
+ * Box..................Simple boxing abstraction.
+ * Block................Image-on-top-of-text object.
+ * Ratio................A container for maintaining aspect ratio of content.
+ * Crop.................Provide a cropping context for media (images, etc.).
+ * Table................Classes for manipulating `table`s.
+ * Pack.................Pack items into available horizontal space.
+ *
+ * COMPONENTS
+ * Buttons..............Button component.
+ *
+ * UTILITIES
+ * Clearfix.............Bind our clearfix onto a utility class.
+ * Widths...............Simple width helper classes.
+ * Headings.............Reassigning our heading styles to helper classes.
+ * Spacings.............Nudge bits of the DOM around with these spacing
+ *                      classes.
+ * Responsive-Spacings..Enhances the function of normal spacings for
+ *                      responsive usage.
+ * Print................Reset-like styles taken from the HTML5 Boilerplate.
+ * Hide.................Helper classes to hide content
+ */
 
-	&.mkdo_alert--warning {
-		border: 1px solid #ff4c4c;
-		background-color: #ffe5e5;
-	}
+// SETTINGS
+@import "settings/settings.config";
+@import "../../../bower_components/inuitcss/settings/settings.core";
+@import "settings/settings.global";
 
-	&.mkdo_alert--success {
-		border: 1px solid #4cff4c;
-		background-color: #edffed;
-	}
 
-	.close {
-		position: absolute;
-		top: 2px;
-		right: 2px;
-		text-decoration: none;
-		color: #444;
-		font-size: 24px;
 
-		&:hover {
-			opacity: 0.5;
-		}
-	}
-}
+
+
+// TOOLS
+// @import "../../../bower_components/inuitcss/tools/tools.font-size";
+@import "../../../bower_components/inuitcss/tools/tools.clearfix";
+@import "../../../bower_components/inuitcss/tools/tools.hidden";
+// @import "../../../bower_components/inuitcss/node_modules/sass-mq/mq";
+
+
+
+
+
+// GENERIC
+// @import "../../../bower_components/inuitcss/generic/generic.box-sizing";
+// @import "../../../bower_components/inuitcss/generic/generic.normalize";
+// @import "../../../bower_components/inuitcss/generic/generic.reset";
+// @import "../../../bower_components/inuitcss/generic/generic.shared";
+
+
+
+
+
+// ELEMENTS
+// @import "../../../bower_components/inuitcss/elements/elements.page";
+// @import "../../../bower_components/inuitcss/elements/elements.headings";
+// @import "../../../bower_components/inuitcss/elements/elements.images";
+// @import "../../../bower_components/inuitcss/elements/elements.tables";
+
+
+
+
+
+// OBJECTS
+//
+// Uncomment and add to this section as necessary.
+// @import "../../../bower_components/inuitcss/objects/objects.wrapper";
+// @import "../../../bower_components/inuitcss/objects/objects.layout";
+// @import "../../../bower_components/inuitcss/objects/objects.media";
+// @import "../../../bower_components/inuitcss/objects/objects.flag";
+// @import "../../../bower_components/inuitcss/objects/objects.list-bare";
+// @import "../../../bower_components/inuitcss/objects/objects.list-inline";
+@import "../../../bower_components/inuitcss/objects/objects.box";
+// @import "../../../bower_components/inuitcss/objects/objects.block";
+// @import "../../../bower_components/inuitcss/objects/objects.ratio";
+// @import "../../../bower_components/inuitcss/objects/objects.crop";
+// @import "../../../bower_components/inuitcss/objects/objects.table";
+// @import "../../../bower_components/inuitcss/objects/objects.pack";
+
+
+
+
+
+// COMPONENTS
+//
+// Build and include your project’s UI Compoments here.
+@import "components/components.alerts";
+@import "components/components.buttons";
+
+
+
+
+
+// UTILITIES
+@import "../../../bower_components/inuitcss/utilities/utilities.clearfix";
+
+// $inuit-offsets: false;
+// @import "../../../bower_components/inuitcss/utilities/utilities.widths";
+// @import "../../../bower_components/inuitcss/utilities/utilities.headings";
+// @import "../../../bower_components/inuitcss/utilities/utilities.spacings";
+// @import "../../../bower_components/inuitcss/utilities/utilities.responsive-spacings";
+// @import "../../../bower_components/inuitcss/utilities/utilities.print";
+@import "../../../bower_components/inuitcss/utilities/utilities.hide";
 
 /**
  *  Forms
  */
 
-.mkdo_form {
-	border: 1px solid #ccc;
-	padding: 15px;
-	margin-bottom: 16px;
-
-	.mkdo_form__input {
-
-		label {
-			@extend .visually-hidden;
-		}
-
-		input:not(.mkdo_form__button) {
-			width: 100%;
-		}
-	}
-
-	.mkdo_form__button {
-		padding: 5px 15px;
-		border: 1px solid #ccc;
-		background-color: #fff;
-		color: #444;
-		margin-bottom: 16px;
-
-		&:hover {
-			background-color: #ccc;
-		}
-	}
-}
-
-.form_navigation {
-	ul {
-		padding: 0px;
-		margin: 0px;
-		list-style-type: none;
-	}
-
-	.form_navigation__item {
-		display: inline-block;
-		margin-right: 8px;
-
-		&:last-child {
-			margin-right: 0px;
-		}
-	}
-}
+// .mkdo_form {
+// 	border: 1px solid #ccc;
+// 	padding: 15px;
+// 	margin-bottom: 16px;
+//
+// 	.mkdo_form__input {
+//
+// 		label {
+// 			@extend .u-hidden-visually;
+// 		}
+//
+// 		input:not(.mkdo_form__button) {
+// 			width: 100%;
+// 		}
+// 	}
+//
+// 	.mkdo_form__button {
+// 		padding: 5px 15px;
+// 		border: 1px solid #ccc;
+// 		background-color: #fff;
+// 		color: #444;
+// 		margin-bottom: 16px;
+//
+// 		&:hover {
+// 			background-color: #ccc;
+// 		}
+// 	}
+// }
+//
+// .form_navigation {
+// 	ul {
+// 		padding: 0px;
+// 		margin: 0px;
+// 		list-style-type: none;
+// 	}
+//
+// 	.form_navigation__item {
+// 		display: inline-block;
+// 		margin-right: 8px;
+//
+// 		&:last-child {
+// 			margin-right: 0px;
+// 		}
+// 	}
+// }

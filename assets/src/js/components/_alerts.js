@@ -1,11 +1,3 @@
-( function( $ ) {
-	'use strict';
-
-	// Javascript.
-
-} )( jQuery );
-
-
 /**
  * ALERTS
  */

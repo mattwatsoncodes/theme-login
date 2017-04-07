@@ -1,41 +1,325 @@
+@charset "UTF-8";
+/* ==========================================================================
+   PLUGIN SCSS
+   ========================================================================== */
 /**
- *  Mixins
+ * CSS for the plugin that runs on the front end.
+ *
+ * This CSS in this plugin has been lovingly buit with the
+ * [Inuit CSS](https://github.com/inuitcss) framework. By
+ * [Harry Roberts](https://csswizardry.com).
+ *
+ * The CSS here should exist here just for reference. We highly recommend that
+ * you delete, this CSS and create your own within your existing theme, and
+ * concatinate it within your existing workflow.
  */
-.visually-hidden, .mkdo_form .mkdo_form__input label {
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip: rect(0, 0, 0, 0);
-  position: absolute; }
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Config...............Project-level configuration and feature switches.
+ * Core.................inuitcss’ core and setup settings.
+ * Global...............Project-wide variables and settings.
+ *
+ * TOOLS
+ * Font-size............A mixin which guarantees baseline-friendly line-heights.
+ * Clearfix.............Micro clearfix mixin.
+ * Hidden...............Mixin for hiding elements.
+ * Sass MQ..............inuitcss’ default media query manager.
+ *
+ * GENERIC
+ * Box-sizing...........Better default `box-sizing`.
+ * Normalize.css........A level playing field using @necolas’ Normalize.css.
+ * Reset................A tiny reset to complement Normalize.css.
+ * Shared...............Sensibly and tersely share some global commonalities
+ *                      (particularly useful when managing vertical rhythm).
+ *
+ * ELEMENTS
+ * Page.................Set up our document’s default `font-size` and
+ *                      `line-height`.
+ * Headings.............Very minimal (i.e. only font-size information) for
+ *                      headings 1 through 6.
+ * Images...............Base image styles.
+ * Tables...............Simple table styles.
+ *
+ * OBJECTS
+ * Wrapper..............Page constraint object.
+ * Layout...............Generic layout module.
+ * Media................Image- and text-like content side by side. The
+ *                      poster-child of OOCSS.
+ * Flag.................Table-layout-based advancement on the Media object.
+ * List-bare............Lists with no bullets or indents.
+ * List-inline..........A list whose items all site in a line.
+ * Box..................Simple boxing abstraction.
+ * Block................Image-on-top-of-text object.
+ * Ratio................A container for maintaining aspect ratio of content.
+ * Crop.................Provide a cropping context for media (images, etc.).
+ * Table................Classes for manipulating `table`s.
+ * Pack.................Pack items into available horizontal space.
+ *
+ * COMPONENTS
+ * Buttons..............Button component.
+ *
+ * UTILITIES
+ * Clearfix.............Bind our clearfix onto a utility class.
+ * Widths...............Simple width helper classes.
+ * Headings.............Reassigning our heading styles to helper classes.
+ * Spacings.............Nudge bits of the DOM around with these spacing
+ *                      classes.
+ * Responsive-Spacings..Enhances the function of normal spacings for
+ *                      responsive usage.
+ * Print................Reset-like styles taken from the HTML5 Boilerplate.
+ * Hide.................Helper classes to hide content
+ */
+/* ==========================================================================
+   #BOX
+   ========================================================================== */
+/**
+ * The box object simply boxes off content. Extend with cosmetic styles in the
+ * Components layer.
+ *
+ * 1. So we can apply the `.o-box` class to naturally-inline elements.
+ */
+.o-box {
+  display: block;
+  /* [1] */
+  padding: 24px; }
+  .o-box:after {
+    content: "" !important;
+    display: block !important;
+    clear: both !important; }
+  .o-box > :last-child {
+    margin-bottom: 0; }
+
+/* Size variants
+   ========================================================================== */
+.o-box--flush {
+  padding: 0; }
+
+.o-box--tiny {
+  padding: 6px; }
+
+.o-box--small {
+  padding: 12px; }
+
+.o-box--large {
+  padding: 48px; }
+
+.o-box--huge {
+  padding: 96px; }
+
+/* ==========================================================================
+   #ALERTS
+   ========================================================================== */
+/**
+ * @see https://codepen.io/MattIn4D/pen/jDvLl
+ */
+/**
+ * 1. Ensure the close button floats.
+ * 2. Default colour.
+ * 3. Default background colour.
+ * 4. Border and default colour.
+ * 5. Ensure the first p has no top margin.
+ * 6. Ensure the last p has no bottom margin.
+ */
+.c-alert {
+  position: relative;
+  /* [1] */
+  color: #8a6d3b;
+  /* [2] */
+  background: #fcf8e3;
+  /* [3] */
+  border: 1px solid #faebcc;
+  /* [4] */ }
+  .c-alert p:first-of-type {
+    margin-top: 0px;
+    /* [5] */ }
+  .c-alert p:last-of-type {
+    margin-bottom: 0px;
+    /* [6] */ }
+
+/**
+ * 1. Ensure the close button uses a mouse pointer.
+ * 2. Absolute position the element.
+ * 3. Give the element some padding.
+ * 4. Position the element at the top.
+ * 5. Position the element at the right.
+ * 6. Float the element to the right.
+ * 7. Inherit the colour of the container element.
+ * 8. Set the font size.
+ * 9. Set the line hight.
+ * 10. Set the font weight to bold.
+ * 11. Ensure there is no underline.
+ */
+.c-alert__close {
+  cursor: pointer;
+  /* [1] */
+  position: absolute;
+  /* [2] */
+  padding: 0 0.5em;
+  /* [3] */
+  top: 0;
+  /* [4] */
+  right: 0;
+  /* [5] */
+  float: right;
+  /* [6] */
+  color: inherit;
+  /* [7] */
+  font-size: 1.3em;
+  /* [8] */
+  line-height: 1.5em;
+  /* [9] */
+  font-weight: bold;
+  /* [10] */
+  text-decoration: none;
+  /* [11] */ }
+
+/* Style variants
+   ========================================================================== */
+.c-alert--success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d; }
+
+.c-alert--warning {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442; }
+
+.c-alert--info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f; }
+
+/* ==========================================================================
+   #BUTTONS
+   ========================================================================== */
+/**
+ * 1. Allow us to style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Make buttons inherit font styles (often necessary when styling `input`s as
+ *    buttons).
+ * 4. Reset/normalize some styles.
+ * 5. Force all button-styled elements to appear clickable.
+ */
+.c-btn {
+  display: inline-block;
+  /* [1] */
+  vertical-align: middle;
+  /* [2] */
+  font: inherit;
+  /* [3] */
+  text-align: center;
+  /* [4] */
+  margin: 0;
+  /* [4] */
+  cursor: pointer;
+  /* [5] */
+  padding: 12px 24px;
+  transition: 0.3333333333s;
+  border-radius: 3px; }
+
+/* Style variants
+   ========================================================================== */
+.c-btn--primary {
+  background-color: #4a8ec2; }
+  .c-btn--primary, .c-btn--primary:hover, .c-btn--primary:active, .c-btn--primary:focus {
+    text-decoration: none;
+    /* [4] */
+    color: #fff; }
+  .c-btn--primary:hover, .c-btn--primary:focus {
+    background-color: #3774a2; }
+
+.c-btn--secondary {
+  background-color: #2f4054; }
+  .c-btn--secondary, .c-btn--secondary:hover, .c-btn--secondary:active, .c-btn--secondary:focus {
+    text-decoration: none;
+    color: #fff; }
+  .c-btn--secondary:hover, .c-btn--secondary:focus {
+    background-color: #1d2733; }
+
+.c-btn--tertiary {
+  background-color: #fff;
+  color: #4a8ec2; }
+  .c-btn--tertiary, .c-btn--tertiary:hover, .c-btn--tertiary:active, .c-btn--tertiary:focus {
+    text-decoration: none;
+    color: #4a8ec2; }
+  .c-btn--tertiary:hover, .c-btn--tertiary:focus {
+    color: #3774a2; }
+
+/* Size variants
+   ========================================================================== */
+.c-btn--small {
+  padding: inuit-rem(6px) inuit-rem(12px); }
+
+.c-btn--large {
+  padding: inuit-rem(24px) inuit-rem(48px); }
+
+/* Ghost buttons
+   ========================================================================== */
+/**
+ * Ghost buttons have see-through backgrounds and are bordered.
+ */
+.c-btn--ghost {
+  border: 2px solid currentColor;
+  padding: 10px 22px; }
+  .c-btn--ghost, .c-btn--ghost:hover, .c-btn--ghost:active, .c-btn--ghost:focus {
+    background: none; }
+  .c-btn--ghost.c-btn--small {
+    padding: 4px 10px; }
+  .c-btn--ghost.c-btn--large {
+    padding: 22px 46px; }
+  .c-btn--ghost.c-btn--primary {
+    color: #4a8ec2; }
+    .c-btn--ghost.c-btn--primary:hover, .c-btn--ghost.c-btn--primary:focus {
+      color: #3774a2; }
+  .c-btn--ghost.c-btn--secondary {
+    color: #2f4054; }
+    .c-btn--ghost.c-btn--secondary:hover, .c-btn--ghost.c-btn--secondary:focus {
+      color: #1d2733; }
+  .c-btn--ghost.c-btn--tertiary {
+    color: #fff; }
+    .c-btn--ghost.c-btn--tertiary:hover, .c-btn--ghost.c-btn--tertiary:focus {
+      color: #fff; }
+
+/* ==========================================================================
+   #CLEARFIX
+   ========================================================================== */
+/**
+ * Attach our clearfix mixin to a utility class.
+ */
+.u-clearfix:after {
+  content: "" !important;
+  display: block !important;
+  clear: both !important; }
+
+/* ==========================================================================
+   #HIDE
+   ========================================================================== */
+/**
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+.u-hidden-visually, .mkdo_form .mkdo_form__input label {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
+
+/**
+ * Hide visually and from screen readers.
+ */
+.u-hidden {
+  display: none !important; }
 
 /**
  *  Alerts
  */
-.mkdo_alert {
-  position: relative;
-  border: 1px solid #ccc;
-  color: #444;
-  padding: 5px 15px 5px 30px;
-  margin-bottom: 16px; }
-  .mkdo_alert.mkdo_alert--warning {
-    border: 1px solid #ff4c4c;
-    background-color: #ffe5e5; }
-  .mkdo_alert.mkdo_alert--success {
-    border: 1px solid #4cff4c;
-    background-color: #edffed; }
-  .mkdo_alert .close {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    text-decoration: none;
-    color: #444;
-    font-size: 24px; }
-    .mkdo_alert .close:hover {
-      opacity: 0.5; }
-
 /**
  *  Forms
  */

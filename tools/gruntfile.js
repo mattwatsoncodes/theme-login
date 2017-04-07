@@ -125,7 +125,8 @@ module.exports = function(grunt) {
 			// for PUBLIC enqueues.
 			// -------------------------------------
 			concatPublic: [
-				'<%= siteInfo.assets_path_raw %>/<%= siteInfo.js_dir %>/plugin.js'
+				'<%= siteInfo.assets_path_raw %>/<%= siteInfo.js_dir %>/plugin.js',
+				'<%= siteInfo.assets_path_raw %>/<%= siteInfo.js_dir %>/components/_alerts.js'
 			],
 
 			// -------------------------------------
