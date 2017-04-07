@@ -27,15 +27,15 @@
  */
 ?>
 
-<form id="form_forgot_password_reset" class="mkdo_form" method="post" autocomplete="off">
+<form id="form_forgot_password_reset" class="o-box | c-login-form" method="post" autocomplete="off">
 
 	<?php
 	// Add a filter to add controls before the password.
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_password' );
 	?>
 
-	<div class="mkdo_form__input mkdo_form__input--password">
-		<label for="password" class="sr-only screen-reader-text">
+	<div class="c-login-form__input c-login-form__input--password">
+		<label for="password" class="u-hidden-visually">
 			<?php esc_html_e( 'Password:', 'front-end-login' );?>
 		</label>
 		<input
@@ -52,9 +52,9 @@
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_password_confirm' );
 	?>
 
-	<div class="mkdo_form__input mkdo_form__input--password_confirm">
+	<div class="c-login-form__input c-login-form__input--password_confirm">
 
-		<label for="confirm_password" class="sr-only screen-reader-text">
+		<label for="confirm_password" class="u-hidden-visually">
 			<?php esc_html_e( 'Confirm Password:', 'front-end-login' );?>
 		</label>
 		<input
@@ -71,8 +71,12 @@
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_submit' );
 	?>
 
-	<div class="mkdo_form__input mkdo_form__input--submit">
-		<input class="btn button mkdo_form__button" type="submit" value="<?php esc_html_e( 'Set Password', 'front-end-login' );?>"/>
+	<div class="c-login-form__input c-login-form__input--submit">
+		<input
+			class="c-btn c-btn--primary c-btn--small"
+			type="submit"
+			value="<?php esc_html_e( 'Set Password', 'front-end-login' );?>"
+		/>
 	</div>
 
 	<?php
@@ -80,16 +84,26 @@
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_navigation' );
 	?>
 
-	<nav class="mkdo_form__navigation form_navigation" role="navigation">
-		<ul>
-			<li class="form_navigation__item">
-				<a href="<?php echo esc_url( wp_login_url() ); ?>" title="<?php esc_html_e( 'Login', 'front-end-login' );?>"><?php esc_html_e( 'Login', 'front-end-login' );?></a>
+	<nav role="navigation">
+		<ul class="o-list-inline | c-login-form__navigation">
+			<li class="o-list-inline__item">
+				<a
+					href="<?php echo esc_url( wp_login_url() ); ?>"
+					title="<?php esc_html_e( 'Login', 'front-end-login' );?>"
+				>
+					<?php esc_html_e( 'Login', 'front-end-login' );?>
+				</a>
 			</li>
 			<?php
 			if ( get_option( 'users_can_register' ) ) {
 				?>
-				<li class="form_navigation__item">
-					<a href="<?php echo esc_url( wp_registration_url() ); ?>" title="<?php esc_html_e( 'Register', 'front-end-login' );?>"><?php esc_html_e( 'Register', 'front-end-login' );?></a>
+				<li class="o-list-inline__item">
+					<a
+						href="<?php echo esc_url( wp_registration_url() ); ?>"
+						title="<?php esc_html_e( 'Register', 'front-end-login' );?>"
+					>
+						<?php esc_html_e( 'Register', 'front-end-login' );?>
+					</a>
 				</li>
 				<?php
 			}

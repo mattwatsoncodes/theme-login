@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="mkdo_alert mkdo_alert--success alert-box success" role="alert">
+<aside data-alert class="o-box | c-alert c-alert--success | alert-box success" role="alert">
 	<?php esc_html_e( 'You have successfully reset your password. Please login.', 'front-end-login' ); ?>
-	<a href="#" class="close">&times;</a>
+	<a href="#" class="c-alert__close | close">&times;</a>
 </aside>

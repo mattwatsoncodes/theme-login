@@ -72,6 +72,37 @@
  * Hide.................Helper classes to hide content
  */
 /* ==========================================================================
+   #LIST-INLINE
+   ========================================================================== */
+/**
+ * The list-inline object simply displays a list of items in one line.
+ */
+.o-list-inline {
+  margin-left: 0;
+  list-style: none; }
+
+.o-list-inline__item {
+  display: inline-block; }
+
+/* Delimited list.
+   ========================================================================== */
+/**
+ * By default, applying this class will comma separate your list items. You can
+ * change the delimiter by predefining the following variable:
+ */
+/**
+ * 1. Fallback for old IEs not supporting `rem` values.
+ */
+.o-list-inline--delimited {
+  font-size: 0; }
+  .o-list-inline--delimited > .o-list-inline__item {
+    font-size: 16px;
+    /* [1] */
+    font-size: 1rem; }
+  .o-list-inline--delimited > .o-list-inline__item + .o-list-inline__item:before {
+    content: ", "; }
+
+/* ==========================================================================
    #BOX
    ========================================================================== */
 /**
@@ -284,6 +315,24 @@
       color: #fff; }
 
 /* ==========================================================================
+   #LOGIN-FORMS
+   ========================================================================== */
+/**
+ * 1. Make the inputs full width.
+ */
+.c-login-form__input input[type=text],
+.c-login-form__input input[type=email],
+.c-login-form__input input[type=password] {
+  width: 100%;
+  /* [1] */ }
+
+.c-login-form__navigation {
+  padding-left: 0px;
+  padding-right: 0px; }
+  .c-login-form__navigation li:last-of-type {
+    float: right; }
+
+/* ==========================================================================
    #CLEARFIX
    ========================================================================== */
 /**
@@ -301,7 +350,7 @@
  * Hide only visually, but have it available for screen readers:
  * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
  */
-.u-hidden-visually, .mkdo_form .mkdo_form__input label {
+.u-hidden-visually {
   border: 0 !important;
   clip: rect(0 0 0 0) !important;
   height: 1px !important;
@@ -316,37 +365,5 @@
  */
 .u-hidden {
   display: none !important; }
-
-/**
- *  Alerts
- */
-/**
- *  Forms
- */
-.mkdo_form {
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin-bottom: 16px; }
-  .mkdo_form .mkdo_form__input input:not(.mkdo_form__button) {
-    width: 100%; }
-  .mkdo_form .mkdo_form__button {
-    padding: 5px 15px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #444;
-    margin-bottom: 16px; }
-    .mkdo_form .mkdo_form__button:hover {
-      background-color: #ccc; }
-
-.form_navigation ul {
-  padding: 0px;
-  margin: 0px;
-  list-style-type: none; }
-
-.form_navigation .form_navigation__item {
-  display: inline-block;
-  margin-right: 8px; }
-  .form_navigation .form_navigation__item:last-child {
-    margin-right: 0px; }
 
 /*# sourceMappingURL=plugin.css.map */

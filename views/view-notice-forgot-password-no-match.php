@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="mkdo_alert mkdo_alert--warning alert-box warning" role="alert">
+<aside data-alert class="o-box | c-alert c-alert--warning | alert-box warning" role="alert">
 	<?php esc_html_e( 'The passwords you entered do not match.', 'front-end-login' ); ?>
-	<a href="#" class="close">&times;</a>
+	<a href="#" class="c-alert__close | close">&times;</a>
 </aside>

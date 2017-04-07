@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="mkdo_alert mkdo_alert--warning alert-box warning" role="alert">
+<aside data-alert class="o-box | c-alert c-alert--warning | alert-box warning" role="alert">
 	<?php esc_html_e( 'There was an issue with reset password link. Please try again.', 'front-end-login' ); ?>
-	<a href="#" class="close">&times;</a>
+	<a href="#" class="c-alert__close | close">&times;</a>
 </aside>

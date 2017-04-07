@@ -33,7 +33,7 @@ $password_message = apply_filters(
  */
 ?>
 
-<form id="form_register" class="mkdo_form" method="post" autocomplete="off">
+<form id="form_register" class="o-box | c-login-form" method="post" autocomplete="off">
 
 	<?php
 	// Add a filter to add controls before the username.
@@ -41,8 +41,8 @@ $password_message = apply_filters(
 
 	if ( ! $username_is_email ) {
 		?>
-		<div class="mkdo_form__input mkdo_form__input--username">
-			<label for="username">
+		<div class="c-login-form__input c-login-form__input--username">
+			<label for="username" class="u-hidden-visually">
 				<?php esc_html_e( 'Username:', 'front-end-login' );?>
 			</label>
 			<input
@@ -62,8 +62,8 @@ $password_message = apply_filters(
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_email' );
 	?>
 
-	<div class="mkdo_form__input mkdo_form__input--email">
-		<label for="email">
+	<div class="c-login-form__input c-login-form__input--email">
+		<label for="email" class="u-hidden-visually">
 			<?php esc_html_e( 'Email:', 'front-end-login' );?>
 		</label>
 		<input
@@ -86,8 +86,12 @@ $password_message = apply_filters(
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_submit' );
 	?>
 
-	<div class="mkdo_form__input mkdo_form__input--submit">
-		<input class="btn button mkdo_form__button" type="submit" value="<?php esc_html_e( 'Register', 'front-end-login' );?>"/>
+	<div class="c-login-form__input c-login-form__input--submit">
+		<input
+			class="c-btn c-btn--primary c-btn--small"
+			type="submit"
+			value="<?php esc_html_e( 'Register', 'front-end-login' );?>"
+		/>
 	</div>
 
 	<?php
@@ -95,13 +99,23 @@ $password_message = apply_filters(
 	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_navigation' );
 	?>
 
-	<nav class="mkdo_form__navigation form_navigation" role="navigation">
-		<ul>
-			<li class="form_navigation__item">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"><?php esc_html_e( 'Forgot Password?', 'front-end-login' );?></a>
+	<nav role="navigation">
+		<ul class="o-list-inline | c-login-form__navigation">
+			<li class="o-list-inline__item">
+				<a
+					href="<?php echo esc_url( wp_login_url() ); ?>"
+					title="<?php esc_html_e( 'Login', 'front-end-login' );?>"
+				>
+					<?php esc_html_e( 'Login', 'front-end-login' );?>
+				</a>
 			</li>
-			<li class="form_navigation__item">
-				<a href="<?php echo esc_url( wp_login_url() ); ?>" title="<?php esc_html_e( 'Login', 'front-end-login' );?>"><?php esc_html_e( 'Login', 'front-end-login' );?></a>
+			<li class="o-list-inline__item">
+				<a
+					href="<?php echo esc_url( wp_lostpassword_url() ); ?>"
+					title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"
+				>
+					<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>
+				</a>
 			</li>
 		</ul>
 	</nav>

@@ -1,0 +1,25 @@
+/* ==========================================================================
+   #LOGIN-FORMS
+   ========================================================================== */
+
+/**
+ * 1. Make the inputs full width.
+ */
+
+.c-login-form__input {
+
+	input[type=text],
+	input[type=email],
+	input[type=password] {
+		width: 100%; /* [1] */
+	}
+}
+
+.c-login-form__navigation {
+	padding-left: 0px;
+	padding-right: 0px;
+
+	li:last-of-type {
+		float: right;
+	}
+}

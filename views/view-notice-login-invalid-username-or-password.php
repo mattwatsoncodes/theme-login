@@ -27,7 +27,7 @@
  */
 ?>
 
-<aside data-alert class="o-box c-alert c-alert--warning | alert-box warning" role="alert">
+<aside data-alert class="o-box | c-alert c-alert--warning | alert-box warning" role="alert">
 	<p>
 		<?php esc_html_e( 'The username or password you have entered is not valid.', 'front-end-login' ); ?>
 	</p>
