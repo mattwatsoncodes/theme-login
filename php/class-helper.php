@@ -44,6 +44,6 @@ class Helper {
 	 *
 	 * `Helper::convert_hashtags_to_twitter_urls( $content );`
 	 */
-	use Helper_Page_Slug_From_Url;
+	use Helper_Page_Slug_From_URL;
 	use Helper_Render_View;
 }
