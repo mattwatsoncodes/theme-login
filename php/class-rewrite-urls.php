@@ -2,10 +2,10 @@
 /**
  * Class Rewrite_URLs
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Rewrite common WordPress URLs.
@@ -38,7 +38,7 @@ class Rewrite_URLs {
 	public function login_url( $login_url, $redirect, $force_reauth = false ) {
 
 		$slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_login_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_login_slug',
 			'login'
 		);
 
@@ -54,7 +54,7 @@ class Rewrite_URLs {
 	public function register_url( $register_url ) {
 
 		$slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_register_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_register_slug',
 			'register'
 		);
 
@@ -71,7 +71,7 @@ class Rewrite_URLs {
 	function lostpassword_url( $lostpassword_url, $redirect ) {
 
 		$slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_lostpassword_slug',
 			'forgot-password'
 		);
 
@@ -88,7 +88,7 @@ class Rewrite_URLs {
 	public function logout_url( $logout_url, $redirect ) {
 
 		$slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_logout_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_logout_slug',
 			'logout'
 		);
 

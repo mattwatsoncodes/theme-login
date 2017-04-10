@@ -1,4 +1,4 @@
-=== Front End Login ===
+=== Theme Login ===
 Contributors: mkdo, mwtsn
 Donate link:
 Tags: front-end, front end, login, register, reset password
@@ -28,7 +28,7 @@ built in hooks (see FAQ for more).
 = Gah! These styles are horrible, how do I set my own? =
 
 Simple, turn off the default styles and JavaScript and incorporate them into your
-own Workflow / Stylesheet with the following hook: [Enqueues](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-enqueues)
+own Workflow / Stylesheet with the following hook: [Enqueues](https://github.com/mwtsn/theme-login/blob/master/README.md#hooks-enqueues)
 
 = How can I disable access to the WordPress dashboard for certain logged in users? =
 
@@ -40,26 +40,26 @@ Use the [Restrict Content by Role](https://en-gb.wordpress.org/plugins/restrict-
 
 = I want to use custom templates for the 'login pages', how can I do this? =
 
-You can do this via the instructions here: [Custom Templates](https://github.com/mwtsn/front-end-login/blob/master/README.md#faqs-custom-templates)
+You can do this via the instructions here: [Custom Templates](https://github.com/mwtsn/theme-login/blob/master/README.md#faqs-custom-templates)
 
 = How can I customise the slugs to the login, forgot-password, logout and register pages? =
 
-There are hooks available to do this: [Customise page paths](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-page-paths)
+There are hooks available to do this: [Customise page paths](https://github.com/mwtsn/theme-login/blob/master/README.md#hooks-page-paths)
 
 = Can I force the plugin to use an email address as the username? =
 
-Yes you can! View this hook: [Email Login](https://github.com/mwtsn/front-end-login/blob/master/README.md#hooks-email-login)
+Yes you can! View this hook: [Email Login](https://github.com/mwtsn/theme-login/blob/master/README.md#hooks-email-login)
 
 = What is the best way to report an issue? =
 
-I would prefer issues come to the GitHub repository. You can [report an issue here](https://github.com/mwtsn/front-end-login/issues).
+I would prefer issues come to the GitHub repository. You can [report an issue here](https://github.com/mwtsn/theme-login/issues).
 
 == Installation ==
 
-1. Download this repository and unzip it into the folder `front-end-login`
-2. Upload the `front-end-login` folder to the `/wp-content/plugins/` directory
+1. Download this repository and unzip it into the folder `theme-login`
+2. Upload the `theme-login` folder to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Configure the plugin via the 'Front End Login' options page under the WordPress 'Settings' Menu
+4. Configure the plugin via the 'Theme Login' options page under the WordPress 'Settings' Menu
 
 == Changelog ==
 

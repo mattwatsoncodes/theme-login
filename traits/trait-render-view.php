@@ -4,10 +4,10 @@
  *
  * @since	0.1.0
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Get the path of a view
@@ -29,11 +29,11 @@ trait Helper_Render_View {
 	 */
 	public static function render_view( $file_name ) {
 
-		$view_template_folder              = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder', '' );
-		$view_template_folder_check_exists = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder_check_exists', false );
+		$view_template_folder              = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_view_template_folder', '' );
+		$view_template_folder_check_exists = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_view_template_folder_check_exists', false );
 
 		// Use the `_view_template_folder` filter to check for a custom location,
-		// eg: `get_stylesheet_directory() . '/template-parts/front-end-login/'`
+		// eg: `get_stylesheet_directory() . '/template-parts/theme-login/'`
 		//
 		// You can also use the `_view_template_folder_check_exists` filter to
 		// make sure that the file exists before loading.

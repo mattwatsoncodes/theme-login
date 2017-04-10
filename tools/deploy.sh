@@ -9,7 +9,7 @@
 # https://github.com/GaryJones/wordpress-plugin-git-flow-svn-deploy.
 
 echo
-echo "WordPress Deployment for Front End Login ('front-end-login')"
+echo "WordPress Deployment for Theme Login ('theme-login')"
 echo
 echo "Let's collect some information first."
 echo
@@ -18,7 +18,7 @@ echo
 
 # Set up some default values. Feel free to change these in your own script
 CURRENTDIR=`pwd`
-PLUGINSLUG="front-end-login"
+PLUGINSLUG="theme-login"
 default_svnpath="/tmp/$PLUGINSLUG"
 default_svnurl="https://plugins.svn.wordpress.org/$PLUGINSLUG"
 default_svnuser="mwtsn"

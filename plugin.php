@@ -1,19 +1,19 @@
 <?php
 /**
- * Front End Login
+ * Theme Login
  *
- * @link              https://github.com/mkdo/front-end-login
- * @package           mkdo\front-end-login
+ * @link              https://github.com/mkdo/theme-login
+ * @package           mkdo\theme-login
  *
- * Plugin Name:       Front End Login
- * Plugin URI:        https://github.com/mkdo/front-end-login
+ * Plugin Name:       Theme Login
+ * Plugin URI:        https://github.com/mkdo/theme-login
  * Description:       Login, Register and Reset Password, all from the front-end of your WordPress theme.
  * Version:           1.0.0
  * Author:            Make Do <hello@makedo.net>
  * Author URI:        https://makedo.net
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       front-end-login
+ * Text Domain:       theme-login
  * Domain Path:       /languages
  */
 
@@ -23,9 +23,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Constants.
-define( 'MKDO_FRONT_END_LOGIN_ROOT', __FILE__ );
-define( 'MKDO_FRONT_END_LOGIN_NAME', 'Front End Login' );
-define( 'MKDO_FRONT_END_LOGIN_PREFIX', 'mkdo_front_end_login' );
+define( 'MKDO_THEME_LOGIN_ROOT', __FILE__ );
+define( 'MKDO_THEME_LOGIN_NAME', 'Theme Login' );
+define( 'MKDO_THEME_LOGIN_PREFIX', 'mkdo_theme_login' );
 
 // Classes.
 require_once 'php/class-helper.php';
@@ -45,18 +45,18 @@ require_once 'php/class-virtual-page.php';
 //
 // Add references for each class here. If you add new classes be sure to include
 // the namespace.
-use mkdo\front_end_login\Helper;
-use mkdo\front_end_login\Settings;
-use mkdo\front_end_login\Access_Screen_Login;
-use mkdo\front_end_login\Controller_Assets;
-use mkdo\front_end_login\Controller_Main;
-use mkdo\front_end_login\Form_Forgot_Password;
-use mkdo\front_end_login\Form_Login;
-use mkdo\front_end_login\Form_Register;
-use mkdo\front_end_login\Logout;
-use mkdo\front_end_login\Notices_Admin;
-use mkdo\front_end_login\Rewrite_URLs;
-use mkdo\front_end_login\Virtual_Page;
+use mkdo\theme_login\Helper;
+use mkdo\theme_login\Settings;
+use mkdo\theme_login\Access_Screen_Login;
+use mkdo\theme_login\Controller_Assets;
+use mkdo\theme_login\Controller_Main;
+use mkdo\theme_login\Form_Forgot_Password;
+use mkdo\theme_login\Form_Login;
+use mkdo\theme_login\Form_Register;
+use mkdo\theme_login\Logout;
+use mkdo\theme_login\Notices_Admin;
+use mkdo\theme_login\Rewrite_URLs;
+use mkdo\theme_login\Virtual_Page;
 
 // Instances.
 $settings                 = new Settings();

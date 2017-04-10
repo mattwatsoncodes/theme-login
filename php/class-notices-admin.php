@@ -2,10 +2,10 @@
 /**
  * Class Notices_Admin
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * If the plugin needs attention, here is where the notices are set.
@@ -40,7 +40,7 @@ class Notices_Admin {
 		// the `run()` function.
 		if ( ! function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
 			$install_url = admin_url( '/wp-admin/plugin-install.php?s=Shortcode%20UI&tab=search&type=term' );
-			$warning     = sprintf( __( 'The %1$sFront End Login%2$s plugin works much better when you %3$sinstall and activate the Shortcode UI plugin%4$s.', 'front-end-login' ), '<strong>', '</strong>', '<a href="' . esc_url( $install_url ) . '" target="_blank">', '</a>' );
+			$warning     = sprintf( __( 'The %1$sTheme Login%2$s plugin works much better when you %3$sinstall and activate the Shortcode UI plugin%4$s.', 'theme-login' ), '<strong>', '</strong>', '<a href="' . esc_url( $install_url ) . '" target="_blank">', '</a>' );
 			?>
 			<div class="notice notice-warning is-dismissible">
 			<p>

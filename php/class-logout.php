@@ -2,10 +2,10 @@
 /**
  * Class Logout
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Logout controller.
@@ -33,26 +33,25 @@ class Logout {
 
 		// Get the logout slug.
 		$logout_slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_logout_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_logout_slug',
 			'logout'
 		);
 
 		// Get the login slug.
 		$login_slug = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_login_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_login_slug',
 			'login'
 		);
 
 		// Get the login URL.
 		$login_url = network_home_url( '/' . $login_slug . '/' );
 
+		// Get the page slug.
+		$slug = Helper::page_slug_from_url();
+
 		// Check if this page is the logout page (dosn't mattter if the page
 		// exists or not).
-		if (
-			property_exists( $wp_query, 'query' ) &&
-			isset( $wp_query->query['pagename'] ) &&
-			$logout_slug === $wp_query->query['pagename']
-		) {
+		if ( $logout_slug === $slug ) {
 			wp_logout();
 			// We cannot use `auth_redirect()` here, because it will throw us into
 			// an infinate loop.

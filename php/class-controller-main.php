@@ -4,10 +4,10 @@
  *
  * @since	0.1.0
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * The main loader for this plugin
@@ -151,9 +151,9 @@ class Controller_Main {
 	 */
 	public function run() {
 		load_plugin_textdomain(
-			'front-end-login',
+			'theme-login',
 			false,
-			MKDO_FRONT_END_LOGIN_ROOT . '\languages'
+			MKDO_THEME_LOGIN_ROOT . '\languages'
 		);
 
 		$this->settings->run();

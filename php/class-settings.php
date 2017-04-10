@@ -4,10 +4,10 @@
  *
  * @since	0.1.0
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * The main plugin settings page
@@ -29,7 +29,7 @@ class Settings {
 	public function run() {
 		add_action( 'admin_init', array( $this, 'init_settings_page' ) );
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
-		add_action( 'plugin_action_links_' . plugin_basename( MKDO_FRONT_END_LOGIN_ROOT ) , array( $this, 'add_setings_link' ) );
+		add_action( 'plugin_action_links_' . plugin_basename( MKDO_THEME_LOGIN_ROOT ) , array( $this, 'add_setings_link' ) );
 	}
 
 	/**
@@ -40,21 +40,21 @@ class Settings {
 	public function init_settings_page() {
 
 		// Register settings.
-		register_setting( MKDO_FRONT_END_LOGIN_PREFIX . '_settings_group', MKDO_FRONT_END_LOGIN_PREFIX . '_example_setting' );
+		register_setting( MKDO_THEME_LOGIN_PREFIX . '_settings_group', MKDO_THEME_LOGIN_PREFIX . '_example_setting' );
 
 		// Add sections.
-		add_settings_section( MKDO_FRONT_END_LOGIN_PREFIX . '_example_section',
-			esc_html__( 'Example Section Heading', 'front-end-login' ),
-			array( $this, MKDO_FRONT_END_LOGIN_PREFIX . '_example_section_cb' ),
-			MKDO_FRONT_END_LOGIN_PREFIX . '_settings'
+		add_settings_section( MKDO_THEME_LOGIN_PREFIX . '_example_section',
+			esc_html__( 'Example Section Heading', 'theme-login' ),
+			array( $this, MKDO_THEME_LOGIN_PREFIX . '_example_section_cb' ),
+			MKDO_THEME_LOGIN_PREFIX . '_settings'
 		);
 
 		// Add fields to a section.
-		add_settings_field( MKDO_FRONT_END_LOGIN_PREFIX . '_example_field',
-			esc_html__( 'Example Field Label:', 'front-end-login' ),
-			array( $this, MKDO_FRONT_END_LOGIN_PREFIX . '_example_field_cb' ),
-			MKDO_FRONT_END_LOGIN_PREFIX . '_settings',
-			MKDO_FRONT_END_LOGIN_PREFIX . '_example_section'
+		add_settings_field( MKDO_THEME_LOGIN_PREFIX . '_example_field',
+			esc_html__( 'Example Field Label:', 'theme-login' ),
+			array( $this, MKDO_THEME_LOGIN_PREFIX . '_example_field_cb' ),
+			MKDO_THEME_LOGIN_PREFIX . '_settings',
+			MKDO_THEME_LOGIN_PREFIX . '_example_section'
 		);
 	}
 
@@ -63,8 +63,8 @@ class Settings {
 	 *
 	 * @since	0.1.0
 	 */
-	public function mkdo_front_end_login_example_section_cb() {
-		echo '<p>' . esc_html( 'Example description for this section.', 'front-end-login' ) . '</p>';
+	public function mkdo_theme_login_example_section_cb() {
+		echo '<p>' . esc_html( 'Example description for this section.', 'theme-login' ) . '</p>';
 	}
 
 	/**
@@ -72,18 +72,18 @@ class Settings {
 	 *
 	 * @since	0.1.0
 	 */
-	public function mkdo_front_end_login_example_field_cb() {
-		$example_option = get_option( MKDO_FRONT_END_LOGIN_PREFIX . '_example_option', 'Default text...' );
+	public function mkdo_theme_login_example_field_cb() {
+		$example_option = get_option( MKDO_THEME_LOGIN_PREFIX . '_example_option', 'Default text...' );
 		?>
 
 		<div class="field field-example">
 			<p class="field-description">
-				<?php esc_html_e( 'This is an example field.', 'front-end-login' );?>
+				<?php esc_html_e( 'This is an example field.', 'theme-login' );?>
 			</p>
 			<ul class="field-input">
 				<li>
 					<label>
-						<input type="text" name="<?php echo esc_attr( MKDO_FRONT_END_LOGIN_PREFIX . '_example_field' ); ?>" value="<?php echo esc_attr( $example_option ); ?>" />
+						<input type="text" name="<?php echo esc_attr( MKDO_THEME_LOGIN_PREFIX . '_example_field' ); ?>" value="<?php echo esc_attr( $example_option ); ?>" />
 					</label>
 				</li>
 			</ul>
@@ -99,10 +99,10 @@ class Settings {
 	 */
 	public function add_settings_page() {
 		add_submenu_page( 'options-general.php',
-			esc_html__( 'Front End Login', 'front-end-login' ),
-			esc_html__( 'Front End Login', 'front-end-login' ),
+			esc_html__( 'Theme Login', 'theme-login' ),
+			esc_html__( 'Theme Login', 'theme-login' ),
 			'manage_options',
-			MKDO_FRONT_END_LOGIN_PREFIX,
+			MKDO_THEME_LOGIN_PREFIX,
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -115,11 +115,11 @@ class Settings {
 	public function render_settings_page() {
 		?>
 		<div class="wrap">
-			<h2><?php esc_html_e( 'Front End Login', 'front-end-login' );?></h2>
+			<h2><?php esc_html_e( 'Theme Login', 'theme-login' );?></h2>
 
 			<form action="settings.php" method="POST">
-				<?php settings_fields( MKDO_FRONT_END_LOGIN_PREFIX . '_settings_group' ); ?>
-				<?php do_settings_sections( MKDO_FRONT_END_LOGIN_PREFIX . '_settings' ); ?>
+				<?php settings_fields( MKDO_THEME_LOGIN_PREFIX . '_settings_group' ); ?>
+				<?php do_settings_sections( MKDO_THEME_LOGIN_PREFIX . '_settings' ); ?>
 				<?php submit_button(); ?>
 			</form>
 		</div>
@@ -134,7 +134,7 @@ class Settings {
 	 * @since	0.1.0
 	 */
 	function add_setings_link( $links ) {
-		array_unshift( $links, '<a href="options-general.php?page=' . esc_attr( MKDO_FRONT_END_LOGIN_PREFIX ) . '">' . esc_html__( 'Settings', 'front-end-login' ) . '</a>' );
+		array_unshift( $links, '<a href="options-general.php?page=' . esc_attr( MKDO_THEME_LOGIN_PREFIX ) . '">' . esc_html__( 'Settings', 'theme-login' ) . '</a>' );
 
 		return $links;
 	}

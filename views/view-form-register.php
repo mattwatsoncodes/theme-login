@@ -3,7 +3,7 @@
  * Form Register
  *
  * If you wish to override this file, you can do so by creating a version in your
- * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook
+ * theme, and using the `MKDO_THEME_LOGIN_PREFIX . '_view_template_folder` hook
  * to set the right location.
  *
  * @package mkdo\front_end_register
@@ -21,8 +21,8 @@
  */
 
 $password_message = apply_filters(
-	MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_password_message',
-	esc_html__( 'Registration confirmation will be emailed to you.', 'front-end-login' )
+	MKDO_THEME_LOGIN_PREFIX . '_form_register_password_message',
+	esc_html__( 'Registration confirmation will be emailed to you.', 'theme-login' )
 );
 
 /**
@@ -37,19 +37,19 @@ $password_message = apply_filters(
 
 	<?php
 	// Add a filter to add controls before the username.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_username' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_username' );
 
 	if ( ! $username_is_email ) {
 		?>
 		<div class="c-login-form__input c-login-form__input--username">
 			<label for="username" class="u-hidden-visually">
-				<?php esc_html_e( 'Username:', 'front-end-login' );?>
+				<?php esc_html_e( 'Username:', 'theme-login' );?>
 			</label>
 			<input
 				type="text"
 				id="username"
 				name="username"
-				placeholder="<?php esc_html_e( 'Username', 'front-end-login' );?>"
+				placeholder="<?php esc_html_e( 'Username', 'theme-login' );?>"
 				value="<?php echo esc_attr( $username );?>"
 			/>
 		</div>
@@ -59,18 +59,18 @@ $password_message = apply_filters(
 
 	<?php
 	// Add a filter to add controls before the email.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_email' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_email' );
 	?>
 
 	<div class="c-login-form__input c-login-form__input--email">
 		<label for="email" class="u-hidden-visually">
-			<?php esc_html_e( 'Email:', 'front-end-login' );?>
+			<?php esc_html_e( 'Email:', 'theme-login' );?>
 		</label>
 		<input
 			type="text"
 			id="email"
 			name="email"
-			placeholder="<?php esc_html_e( 'Email', 'front-end-login' );?>"
+			placeholder="<?php esc_html_e( 'Email', 'theme-login' );?>"
 			value="<?php echo esc_attr( $email );?>"
 		/>
 	</div>
@@ -83,20 +83,20 @@ $password_message = apply_filters(
 
 	<?php
 	// Add a filter to add controls before the submit button.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_submit' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_submit' );
 	?>
 
 	<div class="c-login-form__input c-login-form__input--submit">
 		<input
 			class="c-btn c-btn--primary c-btn--small"
 			type="submit"
-			value="<?php esc_html_e( 'Register', 'front-end-login' );?>"
+			value="<?php esc_html_e( 'Register', 'theme-login' );?>"
 		/>
 	</div>
 
 	<?php
 	// Add a filter to add controls before the navigation.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_navigation' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_navigation' );
 	?>
 
 	<nav role="navigation">
@@ -104,17 +104,17 @@ $password_message = apply_filters(
 			<li class="o-list-inline__item">
 				<a
 					href="<?php echo esc_url( wp_login_url() ); ?>"
-					title="<?php esc_html_e( 'Login', 'front-end-login' );?>"
+					title="<?php esc_html_e( 'Login', 'theme-login' );?>"
 				>
-					<?php esc_html_e( 'Login', 'front-end-login' );?>
+					<?php esc_html_e( 'Login', 'theme-login' );?>
 				</a>
 			</li>
 			<li class="o-list-inline__item">
 				<a
 					href="<?php echo esc_url( wp_lostpassword_url() ); ?>"
-					title="<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>"
+					title="<?php esc_html_e( 'Forgot Password?', 'theme-login' );?>"
 				>
-					<?php esc_html_e( 'Forgot Password?', 'front-end-login' );?>
+					<?php esc_html_e( 'Forgot Password?', 'theme-login' );?>
 				</a>
 			</li>
 		</ul>
@@ -122,7 +122,7 @@ $password_message = apply_filters(
 
 	<?php
 	// Add a filter to add controls after the form.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_after_form' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_after_form' );
 	?>
 
 	<?php

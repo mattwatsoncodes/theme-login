@@ -3,10 +3,10 @@
  * Form Password Reset
  *
  * If you wish to override this file, you can do so by creating a version in your
- * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook
+ * theme, and using the `MKDO_THEME_LOGIN_PREFIX . '_view_template_folder` hook
  * to set the right location.
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
 /**
@@ -31,57 +31,57 @@
 
 	<?php
 	// Add a filter to add controls before the password.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_password' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . 'form_forgot_password_reset_before_password' );
 	?>
 
 	<div class="c-login-form__input c-login-form__input--password">
 		<label for="password" class="u-hidden-visually">
-			<?php esc_html_e( 'Password:', 'front-end-login' );?>
+			<?php esc_html_e( 'Password:', 'theme-login' );?>
 		</label>
 		<input
 			type="password"
 			id="password"
 			name="password"
-			placeholder="<?php esc_html_e( 'Password', 'front-end-login' );?>"
+			placeholder="<?php esc_html_e( 'Password', 'theme-login' );?>"
 			value="<?php echo $password;?>"
 		/>
 	</div>
 
 	<?php
 	// Add a filter to add controls before the password confrim.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_password_confirm' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . 'form_forgot_password_reset_before_password_confirm' );
 	?>
 
 	<div class="c-login-form__input c-login-form__input--password_confirm">
 
 		<label for="confirm_password" class="u-hidden-visually">
-			<?php esc_html_e( 'Confirm Password:', 'front-end-login' );?>
+			<?php esc_html_e( 'Confirm Password:', 'theme-login' );?>
 		</label>
 		<input
 			type="password"
 			id="password_confirm"
 			name="password_confirm"
-			placeholder="<?php esc_html_e( 'Confirm Password', 'front-end-login' );?>"
+			placeholder="<?php esc_html_e( 'Confirm Password', 'theme-login' );?>"
 			value="<?php echo $password_confirm;?>"
 		/>
 	</div>
 
 	<?php
 	// Add a filter to add controls before the submit button.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_submit' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . 'form_forgot_password_reset_before_submit' );
 	?>
 
 	<div class="c-login-form__input c-login-form__input--submit">
 		<input
 			class="c-btn c-btn--primary c-btn--small"
 			type="submit"
-			value="<?php esc_html_e( 'Set Password', 'front-end-login' );?>"
+			value="<?php esc_html_e( 'Set Password', 'theme-login' );?>"
 		/>
 	</div>
 
 	<?php
 	// Add a filter to add controls before the navigation.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_before_navigation' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . 'form_forgot_password_reset_before_navigation' );
 	?>
 
 	<nav role="navigation">
@@ -89,9 +89,9 @@
 			<li class="o-list-inline__item">
 				<a
 					href="<?php echo esc_url( wp_login_url() ); ?>"
-					title="<?php esc_html_e( 'Login', 'front-end-login' );?>"
+					title="<?php esc_html_e( 'Login', 'theme-login' );?>"
 				>
-					<?php esc_html_e( 'Login', 'front-end-login' );?>
+					<?php esc_html_e( 'Login', 'theme-login' );?>
 				</a>
 			</li>
 			<?php
@@ -100,9 +100,9 @@
 				<li class="o-list-inline__item">
 					<a
 						href="<?php echo esc_url( wp_registration_url() ); ?>"
-						title="<?php esc_html_e( 'Register', 'front-end-login' );?>"
+						title="<?php esc_html_e( 'Register', 'theme-login' );?>"
 					>
-						<?php esc_html_e( 'Register', 'front-end-login' );?>
+						<?php esc_html_e( 'Register', 'theme-login' );?>
 					</a>
 				</li>
 				<?php
@@ -113,7 +113,7 @@
 
 	<?php
 	// Add a filter to add controls after the form.
-	do_action( MKDO_FRONT_END_LOGIN_PREFIX . 'form_forgot_password_reset_after_form' );
+	do_action( MKDO_THEME_LOGIN_PREFIX . 'form_forgot_password_reset_after_form' );
 	?>
 
 	<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>" />

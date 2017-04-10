@@ -5,7 +5,7 @@
  * @package mkdo\ground_control
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Creates a virtual page if the page slug dosnt exist
@@ -54,17 +54,17 @@ class Virtual_Page {
 		$this->slugs = array();
 
 		$this->slugs['login'] = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_login_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_login_slug',
 			'login'
 		);
 
 		$this->slugs['register'] = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_register_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_register_slug',
 			'register'
 		);
 
 		$this->slugs['forgot-password'] = apply_filters(
-			MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_slug',
+			MKDO_THEME_LOGIN_PREFIX . '_lostpassword_slug',
 			'forgot-password'
 		);
 	}
@@ -80,46 +80,46 @@ class Virtual_Page {
 		$this->post_data['login'] = array(
 			'post_title' => esc_html(
 				apply_filters(
-					MKDO_FRONT_END_LOGIN_PREFIX . '_login_title',
-					__( 'Login', 'front-end-login' )
+					MKDO_THEME_LOGIN_PREFIX . '_login_title',
+					__( 'Login', 'theme-login' )
 				)
 			),
 			'post_content' => apply_filters(
-				MKDO_FRONT_END_LOGIN_PREFIX . '_login_content',
+				MKDO_THEME_LOGIN_PREFIX . '_login_content',
 				''
 			) .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_login]' .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_login]',
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_notice_login]' .
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_form_login]',
 		);
 
 		$this->post_data['register'] = array(
 			'post_title' => esc_html(
 				apply_filters(
-					MKDO_FRONT_END_LOGIN_PREFIX . '_register_title',
-					__( 'Register', 'front-end-login' )
+					MKDO_THEME_LOGIN_PREFIX . '_register_title',
+					__( 'Register', 'theme-login' )
 				)
 			),
 			'post_content' => apply_filters(
-				MKDO_FRONT_END_LOGIN_PREFIX . '_register_content',
+				MKDO_THEME_LOGIN_PREFIX . '_register_content',
 				''
 			) .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_register]' .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_register]',
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_notice_register]' .
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_form_register]',
 		);
 
 		$this->post_data['forgot-password'] = array(
 			'post_title' => esc_html(
 				apply_filters(
-					MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_title',
-					__( 'Forgot Password', 'front-end-login' )
+					MKDO_THEME_LOGIN_PREFIX . '_lostpassword_title',
+					__( 'Forgot Password', 'theme-login' )
 				)
 			),
 			'post_content' => apply_filters(
-				MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_content',
+				MKDO_THEME_LOGIN_PREFIX . '_lostpassword_content',
 				''
 			) .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_notice_forgot_password]' .
-			'[' .  MKDO_FRONT_END_LOGIN_PREFIX . '_form_forgot_password]',
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_notice_forgot_password]' .
+			'[' .  MKDO_THEME_LOGIN_PREFIX . '_form_forgot_password]',
 		);
 	}
 
@@ -130,31 +130,10 @@ class Virtual_Page {
 	 */
 	public function setup_virtual_page( $posts ) {
 
-		global $wp_query;
+		global $wp_query, $post;
 
 		// Get the page slug.
-		$slug = '';
-		if (
-			property_exists( $wp_query, 'query' ) &&
-			isset( $wp_query->query['pagename'] )
-		) {
-			$slug = $wp_query->query['pagename'];
-		} elseif (
-			property_exists( $wp_query, 'query' ) &&
-			isset( $wp_query->query['name'] )
-		) {
-			$slug = $wp_query->query['name'];
-		} elseif (
-			property_exists( $wp_query, 'query_vars' ) &&
-			isset( $wp_query->query_vars['pagename'] )
-		) {
-			$slug = $wp_query->query_vars['pagename'];
-		} elseif (
-			property_exists( $wp_query, 'query_vars' ) &&
-			isset( $wp_query->query_vars['name'] )
-		) {
-			$slug = $wp_query->query_vars['name'];
-		}
+		$slug = Helper::page_slug_from_url();
 
 		// If the post matches the slug.
 		if ( in_array( $slug, $this->slugs, true ) ) {

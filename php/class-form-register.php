@@ -4,10 +4,10 @@
  *
  * @since	0.1.0
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * The registration form.
@@ -24,7 +24,7 @@ class Form_Register {
 	 */
 	public function run() {
 		add_action( 'init', array( $this, 'submit' ) );
-		add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_register_form', array( $this, 'render_form' ) );
+		add_action( MKDO_THEME_LOGIN_PREFIX . '_render_register_form', array( $this, 'render_form' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 	}
 
@@ -51,7 +51,7 @@ class Form_Register {
 			$invalid_form     = false;
 
 			// We may wish to lock down the username to be the email address only.
-			$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
+			$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
 
 			// Check the nonce.
 			if ( ! wp_verify_nonce( $_POST['form_register_nonce'], 'form_register' ) ) {
@@ -70,8 +70,8 @@ class Form_Register {
 
 			// We may wish to extend the form, so lets put in filters so we can
 			// extra checks.
-			$invalid_username = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_username', $invalid_username );
-			$invalid_email    = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_email', $invalid_email );
+			$invalid_username = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_invalid_username', $invalid_username );
+			$invalid_email    = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_invalid_email', $invalid_email );
 
 			if ( $invalid_username || $invalid_email ) {
 				$invalid_form = true;
@@ -79,7 +79,7 @@ class Form_Register {
 
 			// Further filter to put in new validation. We should still be able
 			// to access $_POST for checks.
-			$invalid_form = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_invalid_form', $invalid_form );
+			$invalid_form = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_invalid_form', $invalid_form );
 
 			// If the usernames and passwords pass the tests, try to login.
 			if ( ! $invalid_form ) {
@@ -105,7 +105,7 @@ class Form_Register {
 				}
 
 				// Add a filter to the username.
-				$unique_username = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_unique_username', $unique_username );
+				$unique_username = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_unique_username', $unique_username );
 
 				$user_data = array(
 					'user_login'           => $unique_username,
@@ -119,7 +119,7 @@ class Form_Register {
 				);
 
 				// Add a filter to the user data.
-				$user_data = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_user_data', $user_data );
+				$user_data = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_user_data', $user_data );
 
 				// Create the user.
 				$user_id = wp_insert_user( $user_data );
@@ -175,18 +175,18 @@ class Form_Register {
 
 						// Setup email data.
 						$slug = apply_filters(
-							MKDO_FRONT_END_LOGIN_PREFIX . '_lostpassword_slug',
+							MKDO_THEME_LOGIN_PREFIX . '_lostpassword_slug',
 							'forgot-password'
 						);
 						$email_link     = network_home_url( '/' . $slug . '/?key=' . rawurlencode( $key ) . '&salt=' . urlencode( base64_encode( $user_login ) ) . '&action=password-reset' );
-						$email_subject  = get_bloginfo( 'name' ) . esc_html__( ' - Welcome', 'front-end-login' );
-						$email_message  = esc_html__( 'Welcome to ', 'front-end-login' ) . get_bloginfo( 'name' ) . '.' . "\r\n\r\n";
-						$email_message .= esc_html__( 'To create your password, visit the following address:', 'front-end-login' ) . "\r\n\r\n";
+						$email_subject  = get_bloginfo( 'name' ) . esc_html__( ' - Welcome', 'theme-login' );
+						$email_message  = esc_html__( 'Welcome to ', 'theme-login' ) . get_bloginfo( 'name' ) . '.' . "\r\n\r\n";
+						$email_message .= esc_html__( 'To create your password, visit the following address:', 'theme-login' ) . "\r\n\r\n";
 						$email_message .= esc_html__( '[link]' ) . "\r\n\r\n";
 
 						// Allow filtering of subject and message.
-						$email_subject = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_email_subject', $email_subject );
-						$email_message = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_email_message', $email_message );
+						$email_subject = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_email_subject', $email_subject );
+						$email_message = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_email_message', $email_message );
 
 						// Builin WP subject filter.
 						$email_subject = apply_filters( 'retrieve_password_title', $email_subject );
@@ -198,7 +198,7 @@ class Form_Register {
 						$email_message = apply_filters( 'the_content', $email_message );
 
 						// Do actions before email.
-						do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_email', $email_message, $email_subject );
+						do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_email', $email_message, $email_subject );
 
 						// Enable HTML emails.
 						add_filter( 'wp_mail_content_type', array( $this, 'wp_mail_content_type' ) );
@@ -206,7 +206,7 @@ class Form_Register {
 						// Send the message.
 						if ( ! empty( $email_message ) && ! wp_mail( $user_email, $email_subject, $email_message ) ) {
 							// If we could not send the message then warn the user.
-					        wp_die( esc_html__( 'The e-mail could not be sent.', 'front-end-login' ) . "<br />\n" . esc_html__( 'Possible reason: your host may have disabled the mail() function...', 'front-end-login' ) );
+					        wp_die( esc_html__( 'The e-mail could not be sent.', 'theme-login' ) . "<br />\n" . esc_html__( 'Possible reason: your host may have disabled the mail() function...', 'theme-login' ) );
 						}
 
 						// Remove HTML emails.
@@ -219,7 +219,7 @@ class Form_Register {
 
 					// Get the login slug.
 					$login_slug = apply_filters(
-						MKDO_FRONT_END_LOGIN_PREFIX . '_login_slug',
+						MKDO_THEME_LOGIN_PREFIX . '_login_slug',
 						'login'
 					);
 
@@ -228,10 +228,10 @@ class Form_Register {
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
-					$redirect_url = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_redirect_url', $redirect_url );
+					$redirect_url = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_redirect_url', $redirect_url );
 
 					// Do actions before redirect.
-					do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_before_redirect', $redirect_url );
+					do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_redirect', $redirect_url );
 
 					// Do the redirect.
 					wp_safe_redirect( $redirect_url, 302 );
@@ -244,7 +244,7 @@ class Form_Register {
 
 			// If we had errors.
 			if ( $invalid_form ) {
-				add_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notice', array( $this, 'render_notice' ) );
+				add_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_render_notice', array( $this, 'render_notice' ) );
 			}
 		}
 	}
@@ -262,7 +262,7 @@ class Form_Register {
 	public function render_form() {
 		$username          = null;
 		$email             = null;
-		$username_is_email = apply_filters( MKDO_FRONT_END_LOGIN_PREFIX . '_username_is_email', false );
+		$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
 
 		if (
 			isset( $email ) &&
@@ -282,8 +282,8 @@ class Form_Register {
 	public function register_shortcodes() {
 
 		// add the shortcodes.
-		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register', array( $this, 'render_form_action' ) );
-		add_shortcode( MKDO_FRONT_END_LOGIN_PREFIX . '_notice_register', array( $this, 'render_notice_action' ) );
+		add_shortcode( MKDO_THEME_LOGIN_PREFIX . '_form_register', array( $this, 'render_form_action' ) );
+		add_shortcode( MKDO_THEME_LOGIN_PREFIX . '_notice_register', array( $this, 'render_notice_action' ) );
 	}
 
 	/**
@@ -293,7 +293,7 @@ class Form_Register {
 	 */
 	public function render_form_action() {
 		ob_start();
-		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_render_register_form' );
+		do_action( MKDO_THEME_LOGIN_PREFIX . '_render_register_form' );
 		return ob_get_clean();
 	}
 
@@ -304,7 +304,7 @@ class Form_Register {
 	 */
 	public function render_notice_action() {
 		ob_start();
-		do_action( MKDO_FRONT_END_LOGIN_PREFIX . '_form_register_render_notice' );
+		do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_render_notice' );
 		return ob_get_clean();
 	}
 

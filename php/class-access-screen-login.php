@@ -2,10 +2,10 @@
 /**
  * Class Access_Screen_Login
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Control access to the login screen.

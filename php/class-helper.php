@@ -4,10 +4,10 @@
  *
  * @since	0.1.0
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
-namespace mkdo\front_end_login;
+namespace mkdo\theme_login;
 
 /**
  * Traits
@@ -20,6 +20,7 @@ namespace mkdo\front_end_login;
  *
  * Then within the Helper Class include the traits with the 'Use' declaration.
  */
+require_once __DIR__ . '/../traits/trait-page-slug-from-url.php';
 require_once __DIR__ . '/../traits/trait-render-view.php';
 
 /**
@@ -43,5 +44,6 @@ class Helper {
 	 *
 	 * `Helper::convert_hashtags_to_twitter_urls( $content );`
 	 */
+	use Helper_Page_Slug_From_Url;
 	use Helper_Render_View;
 }

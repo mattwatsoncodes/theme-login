@@ -3,10 +3,10 @@
  * Invalid Form
  *
  * If you wish to override this file, you can do so by creating a version in your
- * theme, and using the `MKDO_FRONT_END_LOGIN_PREFIX . '_view_template_folder` hook
+ * theme, and using the `MKDO_THEME_LOGIN_PREFIX . '_view_template_folder` hook
  * to set the right location.
  *
- * @package mkdo\front_end_login
+ * @package mkdo\theme_login
  */
 
 /**
@@ -28,6 +28,6 @@
 ?>
 
 <aside data-alert class="o-box | c-alert c-alert--warning | alert-box warning" role="alert">
-	<?php esc_html_e( 'There was an issue with the information you entered on the form.', 'front-end-login' ); ?>
+	<?php esc_html_e( 'There was an issue with the information you entered on the form.', 'theme-login' ); ?>
 	<a href="#" class="c-alert__close | close">&times;</a>
 </aside>
