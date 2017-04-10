@@ -2,7 +2,7 @@
 
 Login, Register and Reset Password, all from the front-end of your WordPress theme.
 
-![Theme Login](https://github.com/mkdo/theme-login/blob/master/assets/wp-org/banner-1544x500.png?raw=true "Theme Login")
+![Theme Login](https://github.com/mwtsn/theme-login/blob/master/assets/wp-org/banner-1544x500.png?raw=true "Theme Login")
 
 ## [More Information](#more-information)
 

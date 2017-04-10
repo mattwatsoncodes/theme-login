@@ -2,11 +2,11 @@
 /**
  * Theme Login
  *
- * @link              https://github.com/mkdo/theme-login
+ * @link              https://github.com/mwtsn/theme-login
  * @package           mkdo\theme-login
  *
  * Plugin Name:       Theme Login
- * Plugin URI:        https://github.com/mkdo/theme-login
+ * Plugin URI:        https://github.com/mwtsn/theme-login
  * Description:       Login, Register and Reset Password, all from the front-end of your WordPress theme.
  * Version:           1.0.0
  * Author:            Make Do <hello@makedo.net>
