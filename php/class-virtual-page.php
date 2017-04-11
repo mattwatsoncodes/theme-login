@@ -20,7 +20,7 @@ class Virtual_Page {
 	 * @access	private
 	 * @since	0.1.0
 	 */
-	private $slugs;
+	private $slugs = array();
 
 	/**
 	 * Array of post_data
