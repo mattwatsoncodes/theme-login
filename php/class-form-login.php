@@ -44,9 +44,10 @@ class Form_Login {
 			isset( $_POST['form_login_nonce'] )
 		) {
 
-			$username = '';
-			$invalid_email = false;
-			$invalid_form  = false;
+			$username           = '';
+			$invalid_email      = false;
+			$invalid_form       = false;
+			$incorrect_password = false;
 
 			// We may wish to lock down the username to be the email address only.
 			$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
