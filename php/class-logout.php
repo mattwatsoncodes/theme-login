@@ -44,7 +44,7 @@ class Logout {
 		);
 
 		// Get the login URL.
-		$login_url = network_home_url( '/' . $login_slug . '/' );
+		$login_url = home_url( '/' . $login_slug . '/' );
 
 		// Get the page slug.
 		$slug = Helper::page_slug_from_url();

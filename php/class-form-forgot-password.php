@@ -45,17 +45,23 @@ class Form_Forgot_Password {
 		/**
 		 *  Forgot password submit.
 		 */
-
 		if (
 			isset( $_POST['username'] ) &&
 			isset( $_POST['form_forgot_password_nonce'] )
 		) {
-			$username      = $_POST['username'];
+			$username = '';
 			$invalid_email = false;
 			$invalid_form  = false;
 
 			// We may wish to lock down the username to be the email address only.
 			$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
+
+			// Set the username.
+			if ( $username_is_email ) {
+				$username = sanitize_email( $_POST['username'] );
+			} else {
+				$username = sanitize_user( $_POST['username'] );
+			}
 
 			// Check the nonce.
 			if ( ! wp_verify_nonce( $_POST['form_forgot_password_nonce'], 'form_forgot_password' ) ) {
@@ -63,7 +69,7 @@ class Form_Forgot_Password {
 			}
 
 			// Check that the username is an email address.
-			if ( $username_is_email && ! is_email( $_POST['username'] ) ) {
+			if ( $username_is_email && ! is_email( $username ) ) {
 				$invalid_email = true;
 			}
 
@@ -85,11 +91,10 @@ class Form_Forgot_Password {
 				// Depending on if the username is an email or not, we need to
 				// sanitize it appropriately.
 				$user_data  = '';
-				$user_login = esc_attr( $username );
-				$user_data  = get_user_by( 'login', trim( $user_login ) );
 				if ( $username_is_email ) {
-					$user_login = sanitize_email( $username );
-					$user_data  = get_user_by( 'email', trim( $user_login ) );
+					$user_data = get_user_by( 'email', trim( $username ) );
+				} else {
+					$user_data = get_user_by( 'login', trim( $username ) );
 				}
 
 				if ( $user_data ) {
@@ -121,7 +126,7 @@ class Form_Forgot_Password {
 					    $key = wp_generate_password( 20, false );
 						do_action( 'retrieve_password_key', $user_login, $key );
 
-						// Get a new WP Hasher
+						// Get a new WP Hasher.
 					    if ( empty( $wp_hasher ) ) {
 					        require_once ABSPATH . 'wp-includes/class-phpass.php';
 					        $wp_hasher = new \PasswordHash( 8, true );
@@ -142,7 +147,7 @@ class Form_Forgot_Password {
 							MKDO_THEME_LOGIN_PREFIX . '_lostpassword_slug',
 							'forgot-password'
 						);
-						$email_link     = network_home_url( '/' . $slug . '/?key=' . rawurlencode( $key ) . '&salt=' . urlencode( base64_encode( $user_login ) ) . '&action=password-reset' );
+						$email_link     = home_url( '/' . $slug . '/?key=' . rawurlencode( $key ) . '&salt=' . urlencode( base64_encode( $user_login ) ) . '&action=password-reset' );
 						$email_subject  = get_bloginfo( 'name' ) . esc_html__( ' - Password Reset', 'theme-login' );
 						$email_message  = esc_html__( 'Someone requested that the password be reset for the ', 'theme-login' ) . get_bloginfo( 'name' ) . esc_html__( ' website.', 'theme-login' ) . "\r\n\r\n";
 						$email_message .= esc_html__( 'If this was a mistake, just ignore this email and nothing will happen.', 'theme-login' ) . "\r\n\r\n";
@@ -278,7 +283,7 @@ class Form_Forgot_Password {
 					);
 
 					// Get the login URL.
-					$redirect_url = network_home_url( '/' . $login_slug . '/?password_reset=true' );
+					$redirect_url = home_url( '/' . $login_slug . '/?password_reset=true' );
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
@@ -353,9 +358,15 @@ class Form_Forgot_Password {
 
 			// Render the lost password form.
 			$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
-			$username = null;
+			$username = '';
 			if ( isset( $_POST['username'] ) && isset( $_POST['reset_nonce'] ) ) {
-				$username = esc_attr( $_POST['username'] );
+
+				// Set the username.
+				if ( $username_is_email ) {
+					$username = sanitize_email( $_POST['username'] );
+				} else {
+					$username = sanitize_user( $_POST['username'] );
+				}
 			}
 			require Helper::render_view( 'view-form-forgot-password' );
 		}
