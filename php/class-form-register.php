@@ -39,11 +39,11 @@ class Form_Register {
 			isset( $_POST['form_register_nonce'] )
 		) {
 
-			$email    = $_POST['email'];
+			$email    = sanitize_email( $_POST['email'] );
 			$username = '';
 
 			if ( isset( $_POST['username'] ) ) {
-				$username = $_POST['username'];
+				$username = sanitize_user( $_POST['username'] );
 			}
 
 			$invalid_username = false;
@@ -178,7 +178,7 @@ class Form_Register {
 							MKDO_THEME_LOGIN_PREFIX . '_lostpassword_slug',
 							'forgot-password'
 						);
-						$email_link     = network_home_url( '/' . $slug . '/?key=' . rawurlencode( $key ) . '&salt=' . urlencode( base64_encode( $user_login ) ) . '&action=password-reset' );
+						$email_link     = home_url( '/' . $slug . '/?key=' . rawurlencode( $key ) . '&salt=' . urlencode( base64_encode( $user_login ) ) . '&action=password-reset' );
 						$email_subject  = get_bloginfo( 'name' ) . esc_html__( ' - Welcome', 'theme-login' );
 						$email_message  = esc_html__( 'Welcome to ', 'theme-login' ) . get_bloginfo( 'name' ) . '.' . "\r\n\r\n";
 						$email_message .= esc_html__( 'To create your password, visit the following address:', 'theme-login' ) . "\r\n\r\n";
@@ -224,7 +224,7 @@ class Form_Register {
 					);
 
 					// Get the login URL.
-					$redirect_url = network_home_url( '/' . $login_slug . '/' );
+					$redirect_url = home_url( '/' . $login_slug . '/' );
 
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.

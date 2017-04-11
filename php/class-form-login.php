@@ -44,11 +44,20 @@ class Form_Login {
 			isset( $_POST['form_login_nonce'] )
 		) {
 
-			$incorrect_password = false;
+			$username           = '';
 			$invalid_email      = false;
+			$invalid_form       = false;
+			$incorrect_password = false;
 
 			// We may wish to lock down the username to be the email address only.
 			$username_is_email = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_username_is_email', false );
+
+			// Set the username.
+			if ( $username_is_email ) {
+				$username = sanitize_email( $_POST['username'] );
+			} else {
+				$username = sanitize_user( $_POST['username'] );
+			}
 
 			// Check the nonce.
 			if ( ! wp_verify_nonce( $_POST['form_login_nonce'], 'form_login' ) ) {
@@ -61,7 +70,7 @@ class Form_Login {
 			}
 
 			// Check that the username is an email address.
-			if ( $username_is_email && ! is_email( $_POST['username'] ) ) {
+			if ( $username_is_email && ! is_email( $username ) ) {
 				$invalid_email = true;
 			}
 
@@ -73,16 +82,9 @@ class Form_Login {
 			// If the usernames and passwords pass the tests, try to login.
 			if ( ! $incorrect_password && ! $invalid_email ) {
 
-				// Depending on if the username is an email or not, we need to
-				// sanitize it appropriately.
-				$user_login = esc_attr( $_POST['username'] );
-				if ( $username_is_email ) {
-					$user_login = sanitize_email( $_POST['username'] );
-				}
-
 				// Setup the credentials.
 				$credentials = array(
-					'user_login'    => $user_login,
+					'user_login'    => $username,
 					'user_password' => $_POST['password'],
 				);
 
@@ -158,11 +160,15 @@ class Form_Login {
 			isset( $_POST['password'] ) &&
 			isset( $_POST['form_login_nonce'] )
 		) {
-			$username = esc_attr( $_POST['username'] );
+			$username = '';
+			$password = $_POST['password'];
+
+			// Set the username.
 			if ( $username_is_email ) {
 				$username = sanitize_email( $_POST['username'] );
+			} else {
+				$username = sanitize_user( $_POST['username'] );
 			}
-			$password = $_POST['password'];
 		}
 		require Helper::render_view( 'view-form-login' );
 	}
