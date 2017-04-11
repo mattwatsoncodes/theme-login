@@ -231,7 +231,7 @@ class Form_Register {
 					$redirect_url = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_register_redirect_url', $redirect_url );
 
 					// Do actions before redirect.
-					do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_redirect', $redirect_url );
+					do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_redirect', $redirect_url, $user_login );
 
 					// Do the redirect.
 					wp_safe_redirect( $redirect_url, 302 );
