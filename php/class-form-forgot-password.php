@@ -285,6 +285,11 @@ class Form_Forgot_Password {
 					// Get the login URL.
 					$redirect_url = home_url( '/' . $login_slug . '/?password_reset=true' );
 
+					// Get the redirect URL if it is set.
+					if ( isset( $_GET['redirect_to'] ) ) {
+						$redirect_url = sanitize_url( $_GET['redirect_to'] );
+					}
+
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
 					$redirect_url = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_forgot_password_redirect_url', $redirect_url );

@@ -111,6 +111,11 @@ class Form_Login {
 					$page_home    = get_option( 'page_on_front' );
 					$redirect_url = get_the_permalink( $page_home );
 
+					// Get the redirect URL if it is set.
+					if ( isset( $_GET['redirect_to'] ) ) {
+						$redirect_url = sanitize_url( $_GET['redirect_to'] );
+					}
+
 					// Add a filter for the redirect URL. We may wish to extend
 					// this later.
 					$redirect_url = apply_filters( MKDO_THEME_LOGIN_PREFIX . '_form_login_redirect_url', $redirect_url );
