@@ -4,7 +4,7 @@ Donate link:
 Tags: front-end, front end, login, register, reset password
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,3 +68,6 @@ I would prefer issues come to the GitHub repository. You can [report an issue he
 
 = 1.0.1 =
 * Fixed issue where 'redirect_to' query string was not wired up.
+
+= 1.0.2 =
+* Added an additional hook to the register form view.

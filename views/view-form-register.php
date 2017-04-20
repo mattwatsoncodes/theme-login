@@ -76,6 +76,11 @@ $password_message = apply_filters(
 	</div>
 
 	<?php
+	// Add a filter to add controls before the password message.
+	do_action( MKDO_THEME_LOGIN_PREFIX . '_form_register_before_password_message' );
+	?>
+
+	<?php
 	if ( ! empty( $password_message ) ) {
 		echo '<p>' . esc_html( $password_message ) . '</p>';
 	}
