@@ -10,7 +10,7 @@ You can use this plugin along with Use the [Restrict Dashboard by Role](https://
 
 You can find out more about this plugin, including the changelog, in the [`readme.txt`](https://github.com/mwtsn/theme-login/blob/master/readme.txt) file, which the WordPress repository uses to display information about the plugin.
 
-You can also view the plugin on the WordPress repository here: N/A
+You can also view the plugin on the WordPress repository here: [https://wordpress.org/plugins/theme-login/](https://wordpress.org/plugins/theme-login/)
 
 ## [Roadmap](#roadmap)
 A bunch of features will be coming to this plugin, including:
