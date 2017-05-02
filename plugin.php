@@ -8,7 +8,7 @@
  * Plugin Name:       Theme Login
  * Plugin URI:        https://github.com/mwtsn/theme-login
  * Description:       Login, Register and Reset Password, all from the front-end of your WordPress theme.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Make Do <hello@makedo.net>
  * Author URI:        https://makedo.net
  * License:           GPL-2.0+

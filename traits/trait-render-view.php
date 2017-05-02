@@ -51,7 +51,7 @@ trait Helper_Render_View {
 
 			// Otherwise check if the file exists first (useful if you only want to override
 			// certain templates without copying the entire views folder to your given path).
-			if ( ! file_exists( $view_template_folder . $file_name . '.php' ) ) {
+			if ( file_exists( $view_template_folder . $file_name . '.php' ) ) {
 				$template_path = $view_template_folder . $file_name . '.php';
 			}
 
