@@ -42,7 +42,11 @@ class Rewrite_URLs {
 			'login'
 		);
 
-		return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		if ( ! empty( $redirect ) ) {
+			return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		}
+
+		return home_url( '/' . $slug . '/' );
 	}
 
 	/**
@@ -75,7 +79,11 @@ class Rewrite_URLs {
 			'forgot-password'
 		);
 
-	    return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		if ( ! empty( $redirect ) ) {
+			return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		}
+
+		return home_url( '/' . $slug . '/' );
 	}
 
 	/**
@@ -92,6 +100,10 @@ class Rewrite_URLs {
 			'logout'
 		);
 
-		return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		if ( ! empty( $redirect ) ) {
+			return home_url( '/' . $slug . '/?redirect_to=' . $redirect );
+		}
+
+		return home_url( '/' . $slug . '/' );
 	}
 }

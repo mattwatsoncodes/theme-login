@@ -4,7 +4,7 @@ Donate link:
 Tags: front-end, front end, login, register, reset password
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,3 +74,6 @@ I would prefer issues come to the GitHub repository. You can [report an issue he
 
 = 1.0.3 =
 * Fixed an issue when overriding a view.
+
+= 1.0.3 =
+* Do not add a redirect link unless required.
